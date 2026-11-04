@@ -18,10 +18,10 @@
     padding: 30px 16px 30px;
   }
 
+  // Telefonda ham 2 ustun: mahsulotlar ixcham, bir ekranda ko'proq ko'rinadi
   @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 20px 12px 20px;
+    gap: 10px;
+    padding: 16px 16px 24px;
   }
 }
 
@@ -44,7 +44,7 @@
   }
 
   @media (max-width: 480px) {
-    padding: calc(var(--nav-height) + 20px) 12px 0;
+    padding: calc(var(--nav-height) + 16px) 16px 0;
     gap: 10px;
   }
 }
@@ -118,6 +118,12 @@
   border: 1px solid rgba(201, 168, 118, 0.2);
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 480px) {
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 10px 14px;
+  }
 
   button {
     padding: 8px 20px;

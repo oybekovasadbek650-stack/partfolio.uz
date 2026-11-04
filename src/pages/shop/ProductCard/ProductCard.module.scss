@@ -11,6 +11,18 @@
     transform: translateY(-6px);
     border-color: rgba(201, 168, 118, 0.6);
   }
+
+  // Telefonda 2 ustunli setka uchun ixcham kartochka
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 10px;
+
+    &:hover {
+      transform: none;
+    }
+  }
 }
 
 .imgWrap {
@@ -22,6 +34,12 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 8px;
+  }
 }
 
 .img {
@@ -29,6 +47,10 @@
   height: 100%;
   object-fit: contain;
   padding: 20px;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
 }
 
 .title {
@@ -36,6 +58,19 @@
   font-size: 17px;
   font-family: var(--font-display);
   color: var(--text);
+
+  // Uzun nomlar 2 qatordan oshmaydi, kartochkalar bir xil bo'yda turadi
+  @media (max-width: 480px) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    min-height: 2.5em;
+    margin: 10px 2px 0;
+    font-size: 14px;
+    line-height: 1.25;
+  }
 }
 
 // Butun kartochkani qoplaydigan ko'rinmas havola
@@ -65,6 +100,11 @@
   color: var(--gold);
   font-size: 15px;
   font-weight: 600;
+
+  @media (max-width: 480px) {
+    margin: 4px 2px 10px;
+    font-size: 14px;
+  }
 }
 
 .addBtn {
@@ -86,6 +126,12 @@
   &:hover {
     background: var(--gold);
     color: var(--bg);
+  }
+
+  @media (max-width: 480px) {
+    margin-top: auto;
+    padding: 8px 0;
+    font-size: 12px;
   }
 }
 

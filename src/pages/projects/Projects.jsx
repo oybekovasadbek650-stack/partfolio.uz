@@ -281,8 +281,8 @@ function Projects() {
               <div className={styles.actions}>
                 <LiveButton live={project.live} />
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn}>
-                    <FaGithub aria-hidden="true" /> GitHub
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn} aria-label="GitHub">
+                    <FaGithub aria-hidden="true" /> <span className={styles.btnText}>GitHub</span>
                   </a>
                 )}
               </div>

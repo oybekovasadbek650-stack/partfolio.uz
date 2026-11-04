@@ -6,6 +6,10 @@
   @media (max-width: 768px) {
     padding: calc(var(--nav-height) + 32px) 16px 60px;
   }
+
+  @media (max-width: 600px) {
+    padding: calc(var(--nav-height) + 16px) 16px 40px;
+  }
 }
 
 .head {
@@ -19,6 +23,14 @@
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 28px;
+  }
+
+  // Telefonda sarlavha va strelkalar bitta qatorda
+  @media (max-width: 600px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
   }
 }
 
@@ -40,6 +52,15 @@
     color: var(--gold);
     font-size: 22px;
   }
+
+  @media (max-width: 600px) {
+    margin-right: 2px;
+    font-size: 13px;
+
+    strong {
+      font-size: 17px;
+    }
+  }
 }
 
 .navBtn {
@@ -58,6 +79,12 @@
   &:hover {
     background: var(--gold);
     color: var(--bg);
+  }
+
+  @media (max-width: 600px) {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
   }
 }
 
@@ -87,6 +114,11 @@
   align-items: center;
   gap: 16px;
   margin-top: 24px;
+
+  @media (max-width: 600px) {
+    gap: 10px;
+    margin-top: 14px;
+  }
 }
 
 .projectDots {
@@ -149,6 +181,11 @@
   margin: 0 0 16px;
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   color: var(--text);
+
+  @media (max-width: 600px) {
+    margin: 0;
+    font-size: 1.9rem;
+  }
 }
 
 .lead {
@@ -157,6 +194,11 @@
   color: rgba(243, 239, 231, 0.7);
   font-size: 1.05rem;
   line-height: 1.7;
+
+  // Kichik ekranda joy tejash uchun kirish matni yashiriladi
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 
@@ -186,8 +228,8 @@
   }
 
   @media (max-width: 600px) {
-    gap: 16px;
-    padding: 12px;
+    gap: 12px;
+    padding: 10px;
     border-radius: 14px;
   }
 }
@@ -199,6 +241,11 @@
   border-radius: 12px;
   background: var(--surface);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+
+  @media (max-width: 600px) {
+    border-radius: 10px;
+    box-shadow: none;
+  }
 
   img {
     width: 100%;
@@ -238,7 +285,7 @@
   gap: 16px;
 
   @media (max-width: 600px) {
-    gap: 12px;
+    gap: 10px;
     padding: 0 4px 4px;
   }
 }
@@ -247,6 +294,11 @@
   margin: 0;
   font-size: clamp(1.6rem, 2.6vw, 2.1rem);
   color: var(--text);
+
+  @media (max-width: 600px) {
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
 }
 
 .description {
@@ -258,11 +310,11 @@
   @media (max-width: 600px) {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     overflow: hidden;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.55;
 
     .bodyOpen & {
       display: block;
@@ -344,6 +396,17 @@
   padding: 0;
   list-style: none;
 
+  // Telefonda texnologiyalar ham "Batafsil" ichida
+  @media (max-width: 600px) {
+    display: none;
+    margin: 0;
+    gap: 6px;
+
+    .bodyOpen & {
+      display: flex;
+    }
+  }
+
   li {
     padding: 5px 12px;
     border: 1px solid rgba(201, 168, 118, 0.3);
@@ -366,13 +429,33 @@
   margin-top: 8px;
 
   // Telefonda tugmalar butun kenglikni teng bo'lib oladi
+  // Telefonda: asosiy tugma kengayadi, GitHub faqat ikonka — hammasi bitta qatorda
   @media (max-width: 600px) {
-    margin-top: 4px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 2px;
 
     > * {
-      flex: 1 1 auto;
+      height: 42px;
       justify-content: center;
     }
+
+    .primaryBtn {
+      flex: 1 1 auto;
+      padding: 0 14px;
+    }
+
+    .secondaryBtn {
+      flex: 0 0 42px;
+      padding: 0;
+      font-size: 18px;
+    }
+  }
+}
+
+.btnText {
+  @media (max-width: 600px) {
+    display: none;
   }
 }
 
@@ -535,4 +618,13 @@
   font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   font-weight: 700;
   text-align: center;
+}
+
+// Telefonda rasm biroz pastroq (16:9) — kartochka ekranga sig'ishi uchun
+@media (max-width: 600px) {
+  .gallery,
+  .noImage,
+  .preview > img {
+    aspect-ratio: 16 / 9;
+  }
 }

@@ -10,6 +10,11 @@
 
   --nav-height: 102px;
   color-scheme: dark;
+
+  // Telefonda navbar pastroq (≈60px), sahifalar tepasida bo'sh joy qolmasin
+  @media (max-width: 768px) {
+    --nav-height: 60px;
+  }
 }
 
 *,

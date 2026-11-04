@@ -1,5 +1,6 @@
 import styles from './navbar.module.scss'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { IoPaperPlaneOutline, IoBagHandleOutline } from 'react-icons/io5'
 import { useCart } from '../../context/CartContext'
 import logo from '../../images/SVG/logo.svg'
@@ -13,6 +14,26 @@ const PAGES = [
 
 function Navbar() {
   const { count } = useCart()
+  const { pathname } = useLocation()
+  // Telefondagi burger-menyu ochiqmi
+  const [open, setOpen] = useState(false)
+
+  // Boshqa sahifaga o'tilganda menyu yopiladi
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  // Menyu ochiq paytda: Escape bilan yopish va orqadagi sahifa surilmasligi
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [open])
 
   // Hozirgi sahifa havolasi oltin rangda ko'rinadi
   const linkClass = ({ isActive }) =>
@@ -25,7 +46,7 @@ function Navbar() {
     `${styles.navbar__cart} ${isActive ? styles.navbar__cart_active : ''}`
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${open ? styles.navbar_open : ''}`}>
       <div className={styles.navbar__logo}>
         {/* Logo bosilsa bosh sahifaga qaytadi */}
         <Link to="/" aria-label="Bosh sahifa">
@@ -33,7 +54,8 @@ function Navbar() {
         </Link>
       </div>
 
-      <div className={styles.navbar__pages}>
+      {/* Kompyuterda o'rtada qator, telefonda burger bosilganda ochiladigan panel */}
+      <div className={styles.navbar__pages} id="nav-menu">
         <ul className={styles.navbar__pages_item}>
           {PAGES.map((page) => (
             <li key={page.to}>
@@ -56,7 +78,24 @@ function Navbar() {
           <IoPaperPlaneOutline className={styles.navbar__cta_icon} aria-hidden="true" />
           <span className={styles.navbar__cta_text}>Contact</span>
         </NavLink>
+
+        {/* Burger tugma — faqat telefonda ko'rinadi */}
+        <button
+          type="button"
+          className={styles.navbar__burger}
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-controls="nav-menu"
+          aria-label={open ? 'Menyuni yopish' : 'Menyuni ochish'}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      {/* Menyu ochiq paytda orqa fonni bosish uni yopadi */}
+      {open && <div className={styles.navbar__backdrop} onClick={() => setOpen(false)} aria-hidden="true" />}
     </nav>
   )
 }
