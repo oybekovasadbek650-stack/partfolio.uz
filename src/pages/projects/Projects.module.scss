@@ -9,7 +9,140 @@
 }
 
 .head {
-  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+}
+
+// Sarlavha yonidagi "01 / 07" va strelkalar
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.slideCounter {
+  margin-right: 8px;
+  color: rgba(243, 239, 231, 0.5);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+
+  strong {
+    color: var(--gold);
+    font-size: 22px;
+  }
+}
+
+.navBtn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(201, 168, 118, 0.45);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--gold);
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+}
+
+// Loyihalar karuseli: bir vaqtda bitta loyiha, yonga suriladi
+.carousel {
+  overflow: hidden;
+  border-radius: 18px;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.carouselFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.projectDots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.projectDot,
+.projectDotActive {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(243, 239, 231, 0.25);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    background: rgba(201, 168, 118, 0.6);
+  }
+}
+
+.projectDotActive {
+  width: 28px;
+  background: var(--gold);
+}
+
+// Avtomatik o'tishgacha qolgan vaqt chizig'i
+.progress {
+  width: min(240px, 60%);
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(243, 239, 231, 0.12);
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left;
+  animation-name: progressFill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes progressFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .title {
@@ -26,14 +159,11 @@
   line-height: 1.7;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
 
 // Loyiha kartochkasi: rasm + ma'lumot yonma-yon
 .card {
+  flex: 0 0 100%;
+  min-width: 0;
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 40px;
@@ -48,19 +178,11 @@
     border-color: rgba(201, 168, 118, 0.5);
   }
 
-  // Juft kartochkalarda rasm o'ng tomonda
-  &:nth-child(even) .preview {
-    order: 2;
-  }
-
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    align-items: start;
     gap: 24px;
     padding: 18px;
-
-    &:nth-child(even) .preview {
-      order: 0;
-    }
   }
 }
 

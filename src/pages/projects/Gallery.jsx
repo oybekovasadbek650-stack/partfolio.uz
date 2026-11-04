@@ -15,10 +15,13 @@ function Gallery({ images, title }) {
     return <div className={styles.noImage}>{title}</div>
   }
 
+  // stopPropagation: rasmni surganda butun loyiha karuseli surilib ketmasin
   const onTouchStart = (e) => {
+    e.stopPropagation()
     touchX.current = e.touches[0].clientX
   }
   const onTouchEnd = (e) => {
+    e.stopPropagation()
     if (touchX.current === null) return
     const diff = e.changedTouches[0].clientX - touchX.current
     if (Math.abs(diff) > 40) go(diff < 0 ? 1 : -1)

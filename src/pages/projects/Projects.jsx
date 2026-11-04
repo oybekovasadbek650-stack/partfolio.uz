@@ -1,6 +1,7 @@
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaGithub } from 'react-icons/fa'
-import { IoArrowForward, IoOpenOutline } from 'react-icons/io5'
+import { IoArrowForward, IoChevronBack, IoChevronForward, IoOpenOutline } from 'react-icons/io5'
 import Gallery from './Gallery'
 import styles from './Projects.module.scss'
 
@@ -144,20 +145,93 @@ function LiveButton({ live }) {
   )
 }
 
+// Har bir loyiha necha millisekund ko'rinib turadi (7000 = 7 soniya)
+const AUTOPLAY_MS = 7000
+
+const prefersReducedMotion =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 function Projects() {
+  const [index, setIndex] = useState(0)
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const [touched, setTouched] = useState(false)
+  const touchX = useRef(null)
+  const count = PROJECTS.length
+
+  const go = (step) => setIndex((i) => (i + step + count) % count)
+  const goTo = (i) => setIndex(i)
+
+  const autoplay = !prefersReducedMotion
+  const paused = hovered || focused || touched
+
+  const onTouchStart = (e) => {
+    setTouched(true)
+    touchX.current = e.touches[0].clientX
+  }
+  const onTouchEnd = (e) => {
+    if (touchX.current !== null) {
+      const diff = e.changedTouches[0].clientX - touchX.current
+      if (Math.abs(diff) > 50) go(diff < 0 ? 1 : -1)
+    }
+    touchX.current = null
+    // Telefonda tegingandan keyin bir oz kutib, keyin yana o'zi aylanadi
+    setTimeout(() => setTouched(false), 4000)
+  }
+
   return (
     <main className={styles.projects}>
       <header className={styles.head}>
-        <h1 className={styles.title}>Loyihalar</h1>
-        <p className={styles.lead}>
-          O'zim yaratgan saytlar. Har birini ochib ko'rishingiz yoki GitHub'da kodini
-          o'qishingiz mumkin.
-        </p>
+        <div>
+          <h1 className={styles.title}>Loyihalar</h1>
+          <p className={styles.lead}>
+            O'zim yaratgan saytlar. Har birini ochib ko'rishingiz yoki GitHub'da kodini
+            o'qishingiz mumkin.
+          </p>
+        </div>
+
+        <div className={styles.navControls}>
+          <span className={styles.slideCounter}>
+            <strong>{String(index + 1).padStart(2, '0')}</strong> / {String(count).padStart(2, '0')}
+          </span>
+          <button type="button" className={styles.navBtn} onClick={() => go(-1)} aria-label="Oldingi loyiha">
+            <IoChevronBack aria-hidden="true" />
+          </button>
+          <button type="button" className={styles.navBtn} onClick={() => go(1)} aria-label="Keyingi loyiha">
+            <IoChevronForward aria-hidden="true" />
+          </button>
+        </div>
       </header>
 
-      <div className={styles.list}>
-        {PROJECTS.map((project) => (
-          <article key={project.title} className={styles.card}>
+      <section
+        className={styles.carousel}
+        aria-roledescription="carousel"
+        aria-label="Loyihalar"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onFocus={() => setFocused(true)}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false)
+        }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) return
+          if (e.key === 'ArrowRight') go(1)
+          if (e.key === 'ArrowLeft') go(-1)
+        }}
+        tabIndex={0}
+      >
+        <div className={styles.slides} style={{ transform: `translateX(-${index * 100}%)` }}>
+        {PROJECTS.map((project, i) => (
+          <article
+            key={project.title}
+            className={styles.card}
+            aria-roledescription="slide"
+            aria-label={`${i + 1} / ${count}: ${project.title}`}
+            aria-hidden={i !== index}
+            inert={i !== index}
+          >
             <div className={styles.preview}>
               <div className={styles.browserBar} aria-hidden="true">
                 <span />
@@ -194,6 +268,37 @@ function Projects() {
             </div>
           </article>
         ))}
+        </div>
+      </section>
+
+      <div className={styles.carouselFooter}>
+        <div className={styles.projectDots}>
+          {PROJECTS.map((project, i) => (
+            <button
+              key={project.title}
+              type="button"
+              className={i === index ? styles.projectDotActive : styles.projectDot}
+              onClick={() => goTo(i)}
+              aria-label={`${project.title} loyihasiga o'tish`}
+              aria-current={i === index}
+            />
+          ))}
+        </div>
+
+        {autoplay && (
+          <div className={styles.progress} aria-hidden="true">
+            {/* Chiziq to'lib bo'lganda keyingi loyihaga o'tadi. key o'zgarsa animatsiya qaytadan boshlanadi */}
+            <span
+              key={index}
+              className={styles.progressBar}
+              style={{
+                animationDuration: `${AUTOPLAY_MS}ms`,
+                animationPlayState: paused ? 'paused' : 'running',
+              }}
+              onAnimationEnd={() => go(1)}
+            />
+          </div>
+        )}
       </div>
     </main>
   )
