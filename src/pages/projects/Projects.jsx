@@ -36,7 +36,7 @@ const PROJECTS = [
     tech: ['React', 'React Router', 'SCSS', 'Vite', 'Vercel'],
     folder: 'portfolio',
     live: { to: '/shop', label: "Demo do'konni ko'rish" },
-    github: null, // GitHub havolasi bo'lsa shu yerga yozing
+    github: 'https://github.com/oybekovasadbek650-stack/partfolio.uz',
   },
   {
     title: 'Where the Sky Begins',
