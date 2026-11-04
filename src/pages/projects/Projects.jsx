@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaGithub } from 'react-icons/fa'
-import { IoArrowForward, IoChevronBack, IoChevronForward, IoOpenOutline } from 'react-icons/io5'
+import { IoArrowForward, IoChevronBack, IoChevronDown, IoChevronForward, IoOpenOutline } from 'react-icons/io5'
 import Gallery from './Gallery'
 import styles from './Projects.module.scss'
 
@@ -156,14 +156,24 @@ function Projects() {
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
   const [touched, setTouched] = useState(false)
+  // Telefonda "Batafsil" ochilgan loyiha (null = hammasi yopiq)
+  const [expanded, setExpanded] = useState(null)
   const touchX = useRef(null)
   const count = PROJECTS.length
 
-  const go = (step) => setIndex((i) => (i + step + count) % count)
-  const goTo = (i) => setIndex(i)
+  // Boshqa loyihaga o'tganda ochiq "Batafsil" yopiladi
+  const go = (step) => {
+    setExpanded(null)
+    setIndex((i) => (i + step + count) % count)
+  }
+  const goTo = (i) => {
+    setExpanded(null)
+    setIndex(i)
+  }
 
   const autoplay = !prefersReducedMotion
-  const paused = hovered || focused || touched
+  // O'qiyotgan paytda ("Batafsil" ochiq) loyiha o'zi almashib ketmaydi
+  const paused = hovered || focused || touched || expanded !== null
 
   const onTouchStart = (e) => {
     setTouched(true)
@@ -241,15 +251,26 @@ function Projects() {
               <Gallery images={imagesFor(project.folder)} title={project.title} />
             </div>
 
-            <div className={styles.body}>
+            <div className={expanded === i ? `${styles.body} ${styles.bodyOpen}` : styles.body}>
               <h2 className={styles.cardTitle}>{project.title}</h2>
               <p className={styles.description}>{project.description}</p>
 
-              <ul className={styles.features}>
+              <ul className={styles.features} id={`features-${i}`}>
                 {project.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+
+              {/* Faqat telefonda ko'rinadi: to'liq matn va imkoniyatlarni ochib-yopadi */}
+              <button
+                type="button"
+                className={styles.moreBtn}
+                onClick={() => setExpanded((e) => (e === i ? null : i))}
+                aria-expanded={expanded === i}
+                aria-controls={`features-${i}`}
+              >
+                {expanded === i ? 'Yopish' : 'Batafsil'} <IoChevronDown aria-hidden="true" />
+              </button>
 
               <ul className={styles.tech} aria-label="Texnologiyalar">
                 {project.tech.map((t) => (
