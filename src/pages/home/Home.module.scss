@@ -1,0 +1,338 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+
+  @media (max-width: 768px) {
+    padding: 0 16px 24px;
+  }
+}
+
+// ===== Hero =====
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 64px;
+  min-height: 100vh;
+  padding: calc(var(--nav-height) + 40px) 0 60px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 32px);
+    text-align: center;
+  }
+}
+
+.text {
+  animation: fromLeft 0.9s ease both;
+
+  @media (max-width: 900px) {
+    order: 2;
+    animation-name: fadeUp;
+  }
+}
+
+.name {
+  margin: 0;
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, var(--text) 0%, var(--gold) 55%, var(--text) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+.role {
+  position: relative;
+  display: inline-block;
+  margin: 18px 0 0;
+  padding-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 600;
+  color: var(--text);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--gold);
+
+    @media (max-width: 900px) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.intro {
+  max-width: 48ch;
+  margin: 24px 0 0;
+  color: rgba(243, 239, 231, 0.72);
+  font-size: 1.08rem;
+  line-height: 1.75;
+
+  @media (max-width: 900px) {
+    margin-inline: auto;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: gap 0.2s ease, background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.primaryBtn {
+  background: var(--gold);
+  color: var(--bg);
+
+  &:hover {
+    gap: 12px;
+    opacity: 0.92;
+  }
+}
+
+.secondaryBtn {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+
+  &:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+}
+
+// ===== Rasm va burchak ramkalar =====
+.photoWrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: fromRight 0.9s ease both;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 340px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(201, 168, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+
+  @media (max-width: 900px) {
+    order: 1;
+    animation-name: fadeUp;
+  }
+}
+
+.frame {
+  position: relative;
+  padding: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--gold);
+    transition: all 0.4s ease;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+
+  &:hover::before {
+    top: -8px;
+    left: -8px;
+    width: 72px;
+    height: 72px;
+  }
+
+  &:hover::after {
+    bottom: -8px;
+    right: -8px;
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.photo {
+  position: relative;
+  width: 360px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 168, 118, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 900px) {
+    width: 260px;
+    height: 300px;
+  }
+
+  @media (max-width: 480px) {
+    width: 220px;
+    height: 250px;
+  }
+}
+
+// ===== Saytda nimalar bor =====
+.sections {
+  padding: 40px 0 40px;
+}
+
+.sectionsTitle {
+  margin: 0 0 20px;
+  font-size: 1.6rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 220px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.2s ease, padding 0.2s ease;
+
+  &:hover {
+    padding-left: 16px;
+    background: rgba(201, 168, 118, 0.04);
+
+    .rowTitle,
+    .rowArrow {
+      color: var(--gold);
+    }
+
+    .rowArrow {
+      transform: translateX(4px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+
+    .rowText {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .rowArrow {
+      grid-row: 1 / span 2;
+      grid-column: 2;
+    }
+  }
+}
+
+.rowTitle {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.rowText {
+  color: rgba(243, 239, 231, 0.6);
+  font-size: 15px;
+}
+
+.rowArrow {
+  color: rgba(243, 239, 231, 0.4);
+  font-size: 20px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+// ===== Animatsiyalar =====
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes fromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,105 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding: calc(var(--nav-height) + 40px) 24px 60px;
+  text-align: center;
+}
+
+// Katta, oltin rangda yaltirab turadigan "404"
+.code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 22vw, 14rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--text) 0%, var(--gold) 50%, var(--text) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite, glow 3s ease-in-out infinite;
+}
+
+.title {
+  margin: 12px 0 12px;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--text);
+}
+
+.text {
+  max-width: 46ch;
+  margin: 0 0 32px;
+  color: rgba(243, 239, 231, 0.65);
+  line-height: 1.7;
+}
+
+.path {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(201, 168, 118, 0.12);
+  color: var(--gold);
+  font-size: 0.95em;
+  word-break: break-all;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease, gap 0.2s ease;
+}
+
+.primaryBtn {
+  background: var(--gold);
+  color: var(--bg);
+
+  &:hover {
+    gap: 12px;
+    opacity: 0.92;
+  }
+}
+
+.secondaryBtn {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+
+  &:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+// "404" sekin yonib-o'chib turadi
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(201, 168, 118, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(201, 168, 118, 0.45));
+  }
+}

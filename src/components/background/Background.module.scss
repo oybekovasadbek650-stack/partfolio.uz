@@ -1,0 +1,29 @@
+.rainWrap {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.drop {
+  position: absolute;
+  top: -100px;
+  width: 1px;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 168, 118, 0.5));
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainWrap {
+    display: none;
+  }
+}

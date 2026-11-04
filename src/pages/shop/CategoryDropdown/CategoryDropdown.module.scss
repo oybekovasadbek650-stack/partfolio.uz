@@ -1,0 +1,107 @@
+.dropdown {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 42px;
+  min-width: 180px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 1px solid rgba(201, 168, 118, 0.35);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(201, 168, 118, 0.7);
+  }
+}
+
+.triggerOpen {
+  border-color: var(--gold);
+
+  .chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.label {
+  white-space: nowrap;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid rgba(201, 168, 118, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.listOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 12px;
+  border-radius: 5px;
+  color: rgba(243, 239, 231, 0.8);
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(201, 168, 118, 0.12);
+    color: var(--text);
+  }
+}
+
+.optionSelected {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .dropdown {
+    flex: 1 1 100%;
+  }
+
+  .trigger {
+    width: 100%;
+  }
+}
