@@ -1,7 +1,7 @@
 .card {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 168, 118, 0.25);
+  background: rgba(var(--line-rgb), 0.03);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
   border-radius: 12px;
   padding: 20px;
   cursor: pointer;
@@ -9,7 +9,7 @@
 
   &:hover {
     transform: translateY(-6px);
-    border-color: rgba(201, 168, 118, 0.6);
+    border-color: rgba(var(--gold-rgb), 0.6);
   }
 
   // Telefonda 2 ustunli setka uchun ixcham kartochka
@@ -28,7 +28,7 @@
 .imgWrap {
   width: 100%;
   height: 200px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--line-rgb), 0.08);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -125,7 +125,7 @@
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 
   @media (max-width: 480px) {
@@ -137,6 +137,6 @@
 
 .added {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
   cursor: default;
 }

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/CartContext'
+import { useLang } from '../../../i18n/LanguageContext'
 import styles from './ProductCard.module.scss'
 
 function ProductCard({ id, img, title, price }) {
   const [added, setAdded] = useState(false)
   const { addItem } = useCart()
+  const { t } = useLang()
 
   const handleAdd = () => {
     addItem({ id, title, price, thumbnail: img })
@@ -31,7 +33,7 @@ function ProductCard({ id, img, title, price }) {
         onClick={handleAdd}
         disabled={added}
       >
-        {added ? "✓ Qo'shildi" : "Savatga qo'shish"}
+        {added ? t('shop.added') : t('shop.add')}
       </button>
     </div>
   )

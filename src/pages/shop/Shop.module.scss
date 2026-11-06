@@ -72,16 +72,16 @@
   transition: border-color 0.2s ease;
 
   &::placeholder {
-    color: rgba(243, 239, 231, 0.4);
+    color: rgba(var(--text-rgb), 0.4);
   }
 
   &:hover {
-    border-color: rgba(201, 168, 118, 0.7);
+    border-color: rgba(var(--gold-rgb), 0.7);
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(201, 168, 118, 0.25);
+    box-shadow: 0 0 0 2px rgba(var(--gold-rgb), 0.25);
   }
 }
 
@@ -89,7 +89,7 @@
   height: 42px;
   padding: 0 16px;
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -112,12 +112,12 @@
   margin: 0 auto 60px;
   padding: 14px 24px;
   width: fit-content;
-  background: rgba(23, 23, 26, 0.5);
+  background: rgba(var(--surface-rgb), 0.5);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(201, 168, 118, 0.2);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
   border-radius: 50px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.25);
 
   @media (max-width: 480px) {
     gap: 12px;
@@ -128,7 +128,7 @@
   button {
     padding: 8px 20px;
     background: transparent;
-    border: 1px solid rgba(201, 168, 118, 0.35);
+    border: 1px solid rgba(var(--gold-rgb), 0.35);
     border-radius: 30px;
     color: var(--text);
     font-size: 14px;
@@ -137,7 +137,7 @@
 
     &:hover:not(:disabled) {
       border-color: var(--gold);
-      background: rgba(201, 168, 118, 0.1);
+      background: rgba(var(--gold-rgb), 0.1);
       color: var(--gold);
       transform: translateY(-1px);
     }
@@ -171,9 +171,9 @@
   flex-direction: column;
   gap: 14px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(var(--line-rgb), 0.06);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(var(--line-rgb), 0.02);
 }
 
 .skeletonImg,
@@ -181,7 +181,7 @@
 .skeletonLineShort {
   display: block;
   border-radius: 8px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0%, rgba(201, 168, 118, 0.12) 50%, rgba(255, 255, 255, 0.04) 100%);
+  background: linear-gradient(90deg, rgba(var(--line-rgb), 0.04) 0%, rgba(var(--gold-rgb), 0.12) 50%, rgba(var(--line-rgb), 0.04) 100%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 
@@ -227,7 +227,7 @@
 
   p {
     margin: 0 0 24px;
-    color: rgba(243, 239, 231, 0.65);
+    color: rgba(var(--text-rgb), 0.65);
     line-height: 1.7;
   }
 }
@@ -235,5 +235,5 @@
 .empty {
   padding: 60px 24px 0;
   text-align: center;
-  color: rgba(243, 239, 231, 0.65);
+  color: rgba(var(--text-rgb), 0.65);
 }

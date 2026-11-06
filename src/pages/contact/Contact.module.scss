@@ -31,7 +31,7 @@
 .lead {
   max-width: 44ch;
   margin: 0 0 36px;
-  color: rgba(243, 239, 231, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
   font-size: 1.05rem;
   line-height: 1.7;
 }
@@ -50,7 +50,7 @@
   align-items: center;
   gap: 16px;
   padding: 14px 16px;
-  border: 1px solid rgba(201, 168, 118, 0.15);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
   border-radius: 12px;
   color: var(--text);
   text-decoration: none;
@@ -58,12 +58,12 @@
 }
 
 a.link:hover {
-  border-color: rgba(201, 168, 118, 0.5);
-  background: rgba(201, 168, 118, 0.05);
+  border-color: rgba(var(--gold-rgb), 0.5);
+  background: rgba(var(--gold-rgb), 0.05);
 
   .icon {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 }
 
@@ -74,7 +74,7 @@ a.link:hover {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: rgba(201, 168, 118, 0.12);
+  background: rgba(var(--gold-rgb), 0.12);
   color: var(--gold);
   font-size: 18px;
   transition: background 0.2s ease, color 0.2s ease;
@@ -87,7 +87,7 @@ a.link:hover {
 }
 
 .linkLabel {
-  color: rgba(243, 239, 231, 0.5);
+  color: rgba(var(--text-rgb), 0.5);
   font-size: 13px;
 }
 
@@ -100,8 +100,8 @@ a.link:hover {
 // O'ng tomon — forma kartochkasi
 .card {
   padding: 36px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 168, 118, 0.25);
+  background: rgba(var(--line-rgb), 0.03);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
   border-radius: 16px;
 
   @media (max-width: 480px) {
@@ -126,7 +126,7 @@ a.link:hover {
   gap: 8px;
 
   label {
-    color: rgba(243, 239, 231, 0.75);
+    color: rgba(var(--text-rgb), 0.75);
     font-size: 14px;
     font-weight: 500;
   }
@@ -134,8 +134,8 @@ a.link:hover {
   input,
   textarea {
     padding: 13px 14px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(var(--line-rgb), 0.04);
+    border: 1px solid rgba(var(--line-rgb), 0.12);
     border-radius: 8px;
     color: var(--text);
     font-size: 15px;
@@ -143,12 +143,12 @@ a.link:hover {
     transition: border-color 0.2s ease, background 0.2s ease;
 
     &::placeholder {
-      color: rgba(243, 239, 231, 0.3);
+      color: rgba(var(--text-rgb), 0.3);
     }
 
     &:focus {
       border-color: var(--gold);
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(var(--line-rgb), 0.07);
     }
   }
 
@@ -160,21 +160,21 @@ a.link:hover {
 
 .invalid,
 .field .invalid {
-  border-color: #d98c8c;
+  border-color: var(--danger);
 }
 
 .error {
-  color: #d98c8c;
+  color: var(--danger);
   font-size: 13px;
 }
 
 .formError {
   margin: 0;
   padding: 12px 14px;
-  border: 1px solid rgba(217, 140, 140, 0.4);
+  border: 1px solid rgba(var(--danger-rgb), 0.4);
   border-radius: 8px;
-  background: rgba(217, 140, 140, 0.08);
-  color: #e6a8a8;
+  background: rgba(var(--danger-rgb), 0.08);
+  color: var(--danger-soft);
   font-size: 14px;
 }
 
@@ -192,7 +192,7 @@ a.link:hover {
   background: var(--gold);
   border: none;
   border-radius: 8px;
-  color: var(--bg);
+  color: var(--on-gold);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -225,7 +225,7 @@ a.link:hover {
   p {
     max-width: 34ch;
     margin: 0 0 24px;
-    color: rgba(243, 239, 231, 0.7);
+    color: rgba(var(--text-rgb), 0.7);
   }
 }
 
@@ -247,6 +247,6 @@ a.link:hover {
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 }

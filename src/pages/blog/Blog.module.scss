@@ -1,0 +1,230 @@
+.blog {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 60px) 40px 80px;
+
+  @media (max-width: 768px) {
+    padding: calc(var(--nav-height) + 32px) 16px 60px;
+  }
+}
+
+.head {
+  margin-bottom: 40px;
+}
+
+.title {
+  margin: 0 0 14px;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.lead {
+  max-width: 56ch;
+  margin: 0;
+  color: rgba(var(--text-rgb), 0.72);
+  font-size: 1.05rem;
+}
+
+// ===== Maqolalar ro'yxati =====
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post {
+  display: block;
+  padding: 26px 28px;
+  border: 1px solid rgba(var(--line-rgb), 0.08);
+  border-radius: 20px;
+  background: rgba(var(--surface-rgb), 0.5);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    border-color: rgba(var(--gold-rgb), 0.45);
+    transform: translateY(-3px);
+
+    .read {
+      gap: 10px;
+    }
+
+    .postTitle {
+      color: var(--gold);
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.postTitle {
+  margin: 10px 0 10px;
+  font-size: clamp(20px, 3vw, 26px);
+  transition: color 0.2s ease;
+}
+
+.excerpt {
+  margin: 0 0 18px;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 3px 10px;
+    border: 1px solid rgba(var(--gold-rgb), 0.3);
+    border-radius: 999px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.read {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+  transition: gap 0.2s ease;
+}
+
+// ===== Bitta maqola =====
+.article {
+  max-width: 720px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+
+  &:hover {
+    gap: 12px;
+    color: var(--gold);
+  }
+}
+
+.articleTitle {
+  margin: 12px 0 16px;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.articleLead {
+  margin: 0 0 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(var(--line-rgb), 0.08);
+  color: rgba(var(--text-rgb), 0.75);
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+
+.content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+
+  p {
+    margin: 0 0 20px;
+    color: rgba(var(--text-rgb), 0.88);
+  }
+
+  h2 {
+    margin: 40px 0 14px;
+    font-size: 26px;
+  }
+}
+
+.code {
+  overflow-x: auto;
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: 14px;
+  background: rgba(var(--surface-rgb), 0.85);
+  font-size: 14px;
+  line-height: 1.6;
+
+  code {
+    font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+    color: var(--text);
+  }
+}
+
+.more {
+  max-width: 720px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(var(--line-rgb), 0.08);
+}
+
+.moreTitle {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.moreList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moreLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(var(--line-rgb), 0.08);
+  border-radius: 14px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  &:hover {
+    border-color: rgba(var(--gold-rgb), 0.45);
+    color: var(--gold);
+  }
+}

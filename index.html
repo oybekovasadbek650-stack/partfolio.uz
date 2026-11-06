@@ -6,6 +6,17 @@
     <title>Asadbek Oybekov — Front-end Developer</title>
     <meta name="description" content="Asadbek Oybekov — Toshkentlik Front-end Developer. React, JavaScript va SCSS bilan zamonaviy web-saytlar." />
     <meta name="theme-color" content="#0b0b0c" />
+    <!-- Rejim (qorong'i/yorug') sahifa chizilishidan oldin qo'yiladi — "miltillash" bo'lmaydi -->
+    <script>
+      (function () {
+        var theme
+        try { theme = localStorage.getItem('theme') } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
 
     <link rel="canonical" href="https://partfoliouz.vercel.app/" />
     <meta property="og:type" content="website" />

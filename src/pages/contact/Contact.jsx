@@ -1,28 +1,39 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { FaTelegramPlane, FaGithub } from 'react-icons/fa'
 import { IoMail, IoLocationSharp, IoCheckmarkCircle } from 'react-icons/io5'
+import { SERVICES } from '../../data/services'
+import { TELEGRAM_URL } from '../../data/projects'
+import { useLang } from '../../i18n/LanguageContext'
 import styles from './Contact.module.scss'
 
 // ⬇️ O'zingizning ma'lumotlaringizni shu yerga yozing
 const CONTACTS = [
-  { icon: FaTelegramPlane, label: 'Telegram', value: '@oybekovasadbek', href: 'https://t.me/oybekovasadbek' },
+  { icon: FaTelegramPlane, label: 'Telegram', value: '@oybekovasadbek', href: TELEGRAM_URL },
   { icon: IoMail, label: 'Email', value: 'oybekovasadbek650@gmail.com', href: 'mailto:oybekovasadbek650@gmail.com' },
   { icon: FaGithub, label: 'GitHub', value: 'oybekovasadbek650-stack', href: 'https://github.com/oybekovasadbek650-stack' },
-  { icon: IoLocationSharp, label: 'Manzil', value: "Toshkent, O'zbekiston" },
+  { icon: IoLocationSharp, labelKey: 'contact.address', valueKey: 'contact.addressValue' },
 ]
 
 const EMPTY_FORM = { name: '', contact: '', message: '', company: '' }
 
+// Xatolar matn emas, kalit sifatida saqlanadi — til almashsa ham to'g'ri ko'rinadi
 function validate(form) {
   const errors = {}
-  if (form.name.trim().length < 2) errors.name = 'Ismingizni yozing'
-  if (!form.contact.trim()) errors.contact = 'Email yoki Telegram username yozing'
-  if (form.message.trim().length < 10) errors.message = "Xabar kamida 10 ta belgidan iborat bo'lsin"
+  if (form.name.trim().length < 2) errors.name = 'contact.errName'
+  if (!form.contact.trim()) errors.contact = 'contact.errContact'
+  if (form.message.trim().length < 10) errors.message = 'contact.errMessage'
   return errors
 }
 
 function Contact() {
-  const [form, setForm] = useState(EMPTY_FORM)
+  const { t, tr } = useLang()
+  const [searchParams] = useSearchParams()
+  // Xizmatlar sahifasidan kelinsa (/contact?service=landing), xabar oldindan yozib qo'yiladi
+  const [form, setForm] = useState(() => {
+    const service = SERVICES.find((s) => s.id === searchParams.get('service'))
+    return service ? { ...EMPTY_FORM, message: t('services.prefill', { service: tr(service.title) }) } : EMPTY_FORM
+  })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') 
 
@@ -60,14 +71,13 @@ function Contact() {
     <main className={styles.contact}>
       <div className={styles.inner}>
         <section className={styles.intro}>
-          <h1 className={styles.title}>Bog'lanish</h1>
-          <p className={styles.lead}>
-            Loyiha, hamkorlik yoki savolingiz bo'lsa, yozib qoldiring.
-            Xabaringiz to'g'ridan-to'g'ri Telegramimga keladi.
-          </p>
+          <h1 className={styles.title}>{t('contact.title')}</h1>
+          <p className={styles.lead}>{t('contact.lead')}</p>
 
           <ul className={styles.links}>
-            {CONTACTS.map(({ icon: Icon, label, value, href }) => {
+            {CONTACTS.map(({ icon: Icon, label: rawLabel, value: rawValue, labelKey, valueKey, href }) => {
+              const label = labelKey ? t(labelKey) : rawLabel
+              const value = valueKey ? t(valueKey) : rawValue
               const content = (
                 <>
                   <span className={styles.icon}><Icon aria-hidden="true" /></span>
@@ -78,7 +88,7 @@ function Contact() {
                 </>
               )
               return (
-                <li key={label}>
+                <li key={rawLabel ?? labelKey}>
                   {href ? (
                     <a href={href} className={styles.link} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
                       {content}
@@ -96,60 +106,60 @@ function Contact() {
           {status === 'success' ? (
             <div className={styles.success} role="status">
               <IoCheckmarkCircle className={styles.successIcon} aria-hidden="true" />
-              <h2>Xabaringiz yuborildi</h2>
-              <p>Rahmat! Tez orada siz qoldirgan manzil orqali javob beraman.</p>
+              <h2>{t('contact.successTitle')}</h2>
+              <p>{t('contact.successText')}</p>
               <button type="button" className={styles.secondaryBtn} onClick={() => setStatus('idle')}>
-                Yana xabar yozish
+                {t('contact.again')}
               </button>
             </div>
           ) : (
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
-              <h2 className={styles.formTitle}>Xabar yozing</h2>
+              <h2 className={styles.formTitle}>{t('contact.formTitle')}</h2>
 
               <div className={styles.field}>
-                <label htmlFor="contact-name">Ism</label>
+                <label htmlFor="contact-name">{t('contact.name')}</label>
                 <input
                   id="contact-name"
                   name="name"
                   type="text"
-                  placeholder="Ismingiz"
+                  placeholder={t('contact.namePh')}
                   autoComplete="name"
                   value={form.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
                   className={errors.name ? styles.invalid : ''}
                 />
-                {errors.name && <span className={styles.error}>{errors.name}</span>}
+                {errors.name && <span className={styles.error}>{t(errors.name)}</span>}
               </div>
 
               <div className={styles.field}>
-                <label htmlFor="contact-contact">Email yoki Telegram</label>
+                <label htmlFor="contact-contact">{t('contact.contactLabel')}</label>
                 <input
                   id="contact-contact"
                   name="contact"
                   type="text"
-                  placeholder="@username yoki email"
+                  placeholder={t('contact.contactPh')}
                   value={form.contact}
                   onChange={handleChange}
                   aria-invalid={!!errors.contact}
                   className={errors.contact ? styles.invalid : ''}
                 />
-                {errors.contact && <span className={styles.error}>{errors.contact}</span>}
+                {errors.contact && <span className={styles.error}>{t(errors.contact)}</span>}
               </div>
 
               <div className={styles.field}>
-                <label htmlFor="contact-message">Xabar</label>
+                <label htmlFor="contact-message">{t('contact.message')}</label>
                 <textarea
                   id="contact-message"
                   name="message"
                   rows="5"
-                  placeholder="Nima haqida gaplashmoqchisiz?"
+                  placeholder={t('contact.messagePh')}
                   value={form.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
                   className={errors.message ? styles.invalid : ''}
                 />
-                {errors.message && <span className={styles.error}>{errors.message}</span>}
+                {errors.message && <span className={styles.error}>{t(errors.message)}</span>}
               </div>
 
               {/* Spam-botlar uchun tuzoq — odamlarga ko'rinmaydi */}
@@ -166,12 +176,12 @@ function Contact() {
 
               {status === 'error' && (
                 <p className={styles.formError} role="alert">
-                  Xabar yuborilmadi. Birozdan keyin qayta urinib ko'ring yoki Telegram orqali yozing.
+                  {t('contact.sendError')}
                 </p>
               )}
 
               <button type="submit" className={styles.submit} disabled={status === 'sending'}>
-                {status === 'sending' ? 'Yuborilmoqda...' : 'Yuborish'}
+                {status === 'sending' ? t('common.sending') : t('contact.send')}
               </button>
             </form>
           )}

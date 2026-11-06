@@ -42,10 +42,10 @@
   gap: 10px;
   margin: 0 0 20px;
   padding: 7px 16px 7px 12px;
-  border: 1px solid rgba(74, 222, 128, 0.35);
+  border: 1px solid rgba(var(--success-rgb), 0.35);
   border-radius: 999px;
-  background: rgba(74, 222, 128, 0.08);
-  color: #86efac;
+  background: rgba(var(--success-rgb), 0.08);
+  color: var(--success);
   font-size: 14px;
   font-weight: 600;
 }
@@ -55,14 +55,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #4ade80;
+  background: var(--success-strong);
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: #4ade80;
+    background: var(--success-strong);
     animation: pulse 2s ease-out infinite;
   }
 
@@ -128,7 +128,7 @@
 .intro {
   max-width: 48ch;
   margin: 24px 0 0;
-  color: rgba(243, 239, 231, 0.72);
+  color: rgba(var(--text-rgb), 0.72);
   font-size: 1.08rem;
   line-height: 1.75;
 
@@ -164,7 +164,7 @@
 
 .primaryBtn {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
 
   &:hover {
     gap: 12px;
@@ -178,7 +178,7 @@
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 }
 
@@ -197,7 +197,7 @@
     width: 340px;
     height: 340px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(201, 168, 118, 0.22) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--gold-rgb), 0.22) 0%, transparent 70%);
     filter: blur(40px);
   }
 
@@ -256,8 +256,8 @@
   height: 420px;
   object-fit: cover;
   border-radius: 4px;
-  border: 1px solid rgba(201, 168, 118, 0.4);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 24px 60px rgba(var(--shadow-rgb), 0.5);
 
   @media (max-width: 900px) {
     width: 260px;
@@ -268,6 +268,142 @@
     width: 220px;
     height: 250px;
   }
+}
+
+// ===== Raqamlar =====
+.stats {
+  padding: 24px 0 48px;
+}
+
+.statsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: 20px;
+  background: rgba(var(--surface-rgb), 0.5);
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 26px 24px;
+
+  & + & {
+    border-left: 1px solid rgba(var(--line-rgb), 0.08);
+  }
+
+  @media (max-width: 760px) {
+    padding: 20px 18px;
+
+    &:nth-child(3) {
+      border-left: none;
+    }
+
+    &:nth-child(n + 3) {
+      border-top: 1px solid rgba(var(--line-rgb), 0.08);
+    }
+  }
+}
+
+.statValue {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// ===== Fikrlar =====
+.testimonials {
+  padding: 40px 0;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid rgba(var(--line-rgb), 0.08);
+  border-radius: 18px;
+  background: rgba(var(--surface-rgb), 0.5);
+}
+
+.quoteText {
+  margin: 0;
+  color: rgba(var(--text-rgb), 0.88);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.quoteAuthor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  > span:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(var(--gold-rgb), 0.16);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.quoteName {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a.quoteName:hover {
+  color: var(--gold);
+}
+
+.quoteRole {
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
 // ===== Saytda nimalar bor =====
@@ -284,7 +420,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(var(--line-rgb), 0.08);
 }
 
 .row {
@@ -293,14 +429,14 @@
   align-items: center;
   gap: 24px;
   padding: 26px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(var(--line-rgb), 0.08);
   color: var(--text);
   text-decoration: none;
   transition: background 0.2s ease, padding 0.2s ease;
 
   &:hover {
     padding-left: 16px;
-    background: rgba(201, 168, 118, 0.04);
+    background: rgba(var(--gold-rgb), 0.04);
 
     .rowTitle,
     .rowArrow {
@@ -336,12 +472,12 @@
 }
 
 .rowText {
-  color: rgba(243, 239, 231, 0.6);
+  color: rgba(var(--text-rgb), 0.6);
   font-size: 15px;
 }
 
 .rowArrow {
-  color: rgba(243, 239, 231, 0.4);
+  color: rgba(var(--text-rgb), 0.4);
   font-size: 20px;
   transition: color 0.2s ease, transform 0.2s ease;
 }

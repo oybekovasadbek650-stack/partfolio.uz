@@ -1,0 +1,246 @@
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 48px) 40px 80px;
+
+  @media (max-width: 768px) {
+    padding: calc(var(--nav-height) + 24px) 16px 60px;
+  }
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+
+  &:hover {
+    gap: 12px;
+    color: var(--gold);
+  }
+}
+
+.head {
+  max-width: 720px;
+  margin-bottom: 36px;
+}
+
+.counter {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+}
+
+.lead {
+  margin: 0 0 24px;
+  color: rgba(var(--text-rgb), 0.75);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: gap 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.primaryBtn {
+  background: var(--gold);
+  color: var(--on-gold);
+
+  &:hover {
+    gap: 12px;
+  }
+}
+
+.secondaryBtn {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+
+  &:hover {
+    background: var(--gold);
+    color: var(--on-gold);
+  }
+}
+
+.private {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.preview {
+  overflow: hidden;
+  border: 1px solid rgba(var(--line-rgb), 0.1);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 30px 70px rgba(var(--shadow-rgb), 0.4);
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.browserBar {
+  display: flex;
+  gap: 6px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(var(--line-rgb), 0.08);
+
+  span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(var(--text-rgb), 0.2);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  margin-top: 56px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-top: 40px;
+  }
+}
+
+.sectionTitle {
+  margin: 0 0 18px;
+  font-size: 24px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 24px;
+    color: rgba(var(--text-rgb), 0.88);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 6px 14px;
+    border: 1px solid rgba(var(--gold-rgb), 0.3);
+    border-radius: 999px;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+// Oldingi / keyingi loyiha
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 72px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(var(--line-rgb), 0.08);
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pagerLink {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1px solid rgba(var(--line-rgb), 0.08);
+  border-radius: 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    border-color: rgba(var(--gold-rgb), 0.45);
+    background: rgba(var(--gold-rgb), 0.06);
+  }
+}
+
+.pagerNext {
+  align-items: flex-end;
+  text-align: right;
+
+  @media (max-width: 560px) {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.pagerLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.pagerTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+}

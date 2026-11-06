@@ -1,20 +1,67 @@
+// ===== Ranglar: qorong'i (asosiy) va yorug' rejim =====
+// Komponentlarda rgba(var(--gold-rgb), 0.2) kabi ishlatiladi —
+// shunda yorug' rejimga o'tilganda hamma joy o'zi moslashadi.
 :root {
   --bg: #0b0b0c;
+  --bg-rgb: 11, 11, 12;
   --surface: #17171a;
+  --surface-rgb: 23, 23, 26;
+  --glass-rgb: 17, 17, 19;
   --text: #f3efe7;
+  --text-rgb: 243, 239, 231;
   --text-muted: #b4aa97;
   --gold: #c9a876;
+  --gold-rgb: 201, 168, 118;
+  --on-gold: #0b0b0c;
+  --line-rgb: 255, 255, 255;
+  --shadow-rgb: 0, 0, 0;
+  --success: #86efac;
+  --success-strong: #4ade80;
+  --success-rgb: 74, 222, 128;
+  --danger: #d98c8c;
+  --danger-soft: #e6a8a8;
+  --danger-rgb: 217, 140, 140;
+  color-scheme: dark;
 
   --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --nav-height: 80px;
-  color-scheme: dark;
 
   // Telefonda navbar pastroq (≈60px), sahifalar tepasida bo'sh joy qolmasin
   @media (max-width: 768px) {
     --nav-height: 66px;
   }
+}
+
+:root[data-theme='light'] {
+  --bg: #f7f3ec;
+  --bg-rgb: 247, 243, 236;
+  --surface: #ffffff;
+  --surface-rgb: 255, 255, 255;
+  --glass-rgb: 255, 252, 246;
+  --text: #1c1915;
+  --text-rgb: 28, 25, 21;
+  --text-muted: #6b6152;
+  --gold: #9a7339;
+  --gold-rgb: 154, 115, 57;
+  --on-gold: #ffffff;
+  --line-rgb: 0, 0, 0;
+  --shadow-rgb: 60, 45, 20;
+  --success: #2f8a4c;
+  --success-strong: #23a455;
+  --success-rgb: 35, 164, 85;
+  --danger: #b4483f;
+  --danger-soft: #c25a50;
+  --danger-rgb: 180, 72, 63;
+  color-scheme: light;
+}
+
+// Rejim almashganda ranglar silliq o'tadi
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
 }
 
 *,
@@ -64,7 +111,7 @@ a {
 
 ::selection {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
 }
 
 :focus-visible {

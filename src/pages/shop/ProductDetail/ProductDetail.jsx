@@ -4,7 +4,10 @@ import { useQuery } from '@tanstack/react-query'
 import { IoArrowBack, IoStar, IoStarHalf, IoStarOutline } from 'react-icons/io5'
 import { getProductById } from '../../../api/api'
 import { useCart } from '../../../context/CartContext'
+import { useLang } from '../../../i18n/LanguageContext'
 import styles from './ProductDetail.module.scss'
+
+const LOCALES = { uz: 'uz-UZ', ru: 'ru-RU', en: 'en-US' }
 
 function Stars({ value }) {
   return (
@@ -23,6 +26,7 @@ function ProductDetail() {
   const [activeImage, setActiveImage] = useState(0)
   const [added, setAdded] = useState(false)
   const { addItem } = useCart()
+  const { t, lang } = useLang()
 
   const { data: product, isLoading, isError } = useQuery({
     queryKey: ['product', id],
@@ -44,7 +48,7 @@ function ProductDetail() {
   if (isLoading) {
     return (
       <main className={styles.page}>
-        <p className={styles.state}>Yuklanmoqda...</p>
+        <p className={styles.state}>{t('common.loading')}</p>
       </main>
     )
   }
@@ -53,9 +57,9 @@ function ProductDetail() {
     return (
       <main className={styles.page}>
         <div className={styles.state}>
-          <p>Bu mahsulot topilmadi.</p>
+          <p>{t('product.notFound')}</p>
           <Link to="/shop" className={styles.back}>
-            <IoArrowBack /> Do'konga qaytish
+            <IoArrowBack /> {t('product.back')}
           </Link>
         </div>
       </main>
@@ -70,17 +74,17 @@ function ProductDetail() {
   const reviews = product.reviews ?? []
 
   const details = [
-    { label: 'Brend', value: product.brand },
-    { label: 'Kafolat', value: product.warrantyInformation },
-    { label: 'Yetkazib berish', value: product.shippingInformation },
-    { label: 'Qaytarish', value: product.returnPolicy },
-    { label: 'Minimal buyurtma', value: product.minimumOrderQuantity && `${product.minimumOrderQuantity} ta` },
+    { label: t('product.brand'), value: product.brand },
+    { label: t('product.warranty'), value: product.warrantyInformation },
+    { label: t('product.shipping'), value: product.shippingInformation },
+    { label: t('product.returns'), value: product.returnPolicy },
+    { label: t('product.minOrder'), value: product.minimumOrderQuantity && t('product.pcs', { n: product.minimumOrderQuantity }) },
   ].filter((d) => d.value)
 
   return (
     <main className={styles.page}>
       <Link to="/shop" className={styles.back}>
-        <IoArrowBack /> Do'konga qaytish
+        <IoArrowBack /> {t('product.back')}
       </Link>
 
       <article className={styles.card}>
@@ -97,7 +101,7 @@ function ProductDetail() {
                   type="button"
                   className={`${styles.thumb} ${i === activeImage ? styles.thumbActive : ''}`}
                   onClick={() => setActiveImage(i)}
-                  aria-label={`${i + 1}-rasm`}
+                  aria-label={t('projects.image', { n: i + 1 })}
                 >
                   <img src={src} alt="" />
                 </button>
@@ -113,7 +117,7 @@ function ProductDetail() {
           <div className={styles.rating}>
             <Stars value={product.rating} />
             <span>
-              {product.rating.toFixed(1)} ({reviews.length} ta sharh)
+              {product.rating.toFixed(1)} ({t('product.reviewsCount', { n: reviews.length })})
             </span>
           </div>
 
@@ -128,7 +132,7 @@ function ProductDetail() {
           </div>
 
           <p className={product.stock > 0 ? styles.inStock : styles.outOfStock}>
-            {product.stock > 0 ? `Omborda ${product.stock} ta bor` : 'Omborda qolmagan'}
+            {product.stock > 0 ? t('product.inStock', { n: product.stock }) : t('product.outOfStock')}
           </p>
 
           <p className={styles.description}>{product.description}</p>
@@ -139,7 +143,7 @@ function ProductDetail() {
             onClick={handleAdd}
             disabled={added || product.stock === 0}
           >
-            {added ? "✓ Savatga qo'shildi" : "Savatga qo'shish"}
+            {added ? t('product.added') : t('shop.add')}
           </button>
 
           {details.length > 0 && (
@@ -157,7 +161,7 @@ function ProductDetail() {
 
       {reviews.length > 0 && (
         <section className={styles.reviews}>
-          <h2 className={styles.reviewsTitle}>Xaridorlar sharhlari</h2>
+          <h2 className={styles.reviewsTitle}>{t('product.reviews')}</h2>
           <ul className={styles.reviewList}>
             {reviews.map((r, i) => (
               <li key={i} className={styles.review}>
@@ -166,7 +170,7 @@ function ProductDetail() {
                   <Stars value={r.rating} />
                 </div>
                 <p>{r.comment}</p>
-                <time dateTime={r.date}>{new Date(r.date).toLocaleDateString('uz-UZ')}</time>
+                <time dateTime={r.date}>{new Date(r.date).toLocaleDateString(LOCALES[lang])}</time>
               </li>
             ))}
           </ul>

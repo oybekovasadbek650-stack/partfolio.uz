@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useId } from 'react'
 import { IoChevronDown, IoCheckmark } from 'react-icons/io5'
 import styles from './CategoryDropdown.module.scss'
 
-function CategoryDropdown({ options, value, onChange }) {
+function CategoryDropdown({ options, value, onChange, label = 'Kategoriya' }) {
   const [open, setOpen] = useState(false)
   const wrapRef = useRef(null)
   const triggerRef = useRef(null)
@@ -85,7 +85,7 @@ function CategoryDropdown({ options, value, onChange }) {
         ref={listRef}
         id={listId}
         role="listbox"
-        aria-label="Kategoriya"
+        aria-label={label}
         className={`${styles.list} ${open ? styles.listOpen : ''}`}
         onKeyDown={handleListKeyDown}
       >

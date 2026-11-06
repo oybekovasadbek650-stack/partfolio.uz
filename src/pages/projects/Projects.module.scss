@@ -44,7 +44,7 @@
 
 .slideCounter {
   margin-right: 8px;
-  color: rgba(243, 239, 231, 0.5);
+  color: rgba(var(--text-rgb), 0.5);
   font-size: 15px;
   font-variant-numeric: tabular-nums;
 
@@ -68,7 +68,7 @@
   place-items: center;
   width: 48px;
   height: 48px;
-  border: 1px solid rgba(201, 168, 118, 0.45);
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
   border-radius: 50%;
   background: transparent;
   color: var(--gold);
@@ -78,7 +78,7 @@
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 
   @media (max-width: 600px) {
@@ -135,12 +135,12 @@
   padding: 0;
   border: none;
   border-radius: 999px;
-  background: rgba(243, 239, 231, 0.25);
+  background: rgba(var(--text-rgb), 0.25);
   cursor: pointer;
   transition: width 0.3s ease, background 0.3s ease;
 
   &:hover {
-    background: rgba(201, 168, 118, 0.6);
+    background: rgba(var(--gold-rgb), 0.6);
   }
 }
 
@@ -155,7 +155,7 @@
   height: 3px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(243, 239, 231, 0.12);
+  background: rgba(var(--text-rgb), 0.12);
 }
 
 .progressBar {
@@ -191,7 +191,7 @@
 .lead {
   max-width: 54ch;
   margin: 0;
-  color: rgba(243, 239, 231, 0.7);
+  color: rgba(var(--text-rgb), 0.7);
   font-size: 1.05rem;
   line-height: 1.7;
 
@@ -211,13 +211,13 @@
   gap: 40px;
   align-items: center;
   padding: 28px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 168, 118, 0.2);
+  background: rgba(var(--line-rgb), 0.03);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
   border-radius: 18px;
   transition: border-color 0.3s ease;
 
   &:hover {
-    border-color: rgba(201, 168, 118, 0.5);
+    border-color: rgba(var(--gold-rgb), 0.5);
   }
 
   @media (max-width: 900px) {
@@ -237,10 +237,10 @@
 // Brauzer oynasi ko'rinishidagi rasm
 .preview {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(var(--line-rgb), 0.1);
   border-radius: 12px;
   background: var(--surface);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 20px 50px rgba(var(--shadow-rgb), 0.45);
 
   @media (max-width: 600px) {
     border-radius: 10px;
@@ -264,13 +264,13 @@
   display: flex;
   gap: 6px;
   padding: 10px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(var(--line-rgb), 0.08);
 
   span {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(243, 239, 231, 0.2);
+    background: rgba(var(--text-rgb), 0.2);
   }
 
   // Telefonda joy tejash uchun brauzer "nuqtalari" yashiriladi
@@ -303,7 +303,7 @@
 
 .description {
   margin: 0;
-  color: rgba(243, 239, 231, 0.72);
+  color: rgba(var(--text-rgb), 0.72);
   line-height: 1.7;
 
   // Telefonda faqat 3 qator ko'rinadi, qolgani "Batafsil" bosilganda
@@ -343,7 +343,7 @@
   li {
     position: relative;
     padding-left: 22px;
-    color: rgba(243, 239, 231, 0.85);
+    color: rgba(var(--text-rgb), 0.85);
     font-size: 15px;
 
     &::before {
@@ -409,7 +409,7 @@
 
   li {
     padding: 5px 12px;
-    border: 1px solid rgba(201, 168, 118, 0.3);
+    border: 1px solid rgba(var(--gold-rgb), 0.3);
     border-radius: 999px;
     color: var(--gold);
     font-size: 13px;
@@ -445,17 +445,35 @@
       padding: 0 14px;
     }
 
-    .secondaryBtn {
+    .detailsBtn {
+      flex: 1 1 auto;
+      padding: 0 12px;
+    }
+
+    .iconBtn {
       flex: 0 0 42px;
-      padding: 0;
+      width: 42px;
       font-size: 18px;
     }
   }
 }
 
-.btnText {
-  @media (max-width: 600px) {
-    display: none;
+// GitHub tugmasi — faqat ikonka, dumaloq
+.iconBtn {
+  justify-content: center;
+  width: 46px;
+  padding: 0;
+  font-size: 19px;
+}
+
+// Karta sarlavhasi loyiha sahifasiga olib boradi
+.cardTitleLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--gold);
   }
 }
 
@@ -475,7 +493,7 @@
 
 .primaryBtn {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
 
   &:hover {
     gap: 12px;
@@ -489,7 +507,7 @@
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 }
 // Rasmlar galereyasi (slayder)
@@ -529,9 +547,9 @@
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(201, 168, 118, 0.4);
+  border: 1px solid rgba(var(--gold-rgb), 0.4);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(var(--shadow-rgb), 0.55);
   color: var(--gold);
   font-size: 20px;
   cursor: pointer;
@@ -541,7 +559,7 @@
 
   &:hover {
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 
   &:focus-visible {
@@ -575,7 +593,7 @@
   right: 12px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(var(--shadow-rgb), 0.55);
   color: var(--text);
   font-size: 12px;
   font-weight: 600;
@@ -597,7 +615,7 @@
   padding: 0;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(var(--line-rgb), 0.45);
   cursor: pointer;
   transition: width 0.25s ease, background 0.25s ease;
 }
@@ -606,7 +624,7 @@
   position: relative;
   overflow: hidden;
   width: 22px;
-  background: rgba(201, 168, 118, 0.45);
+  background: rgba(var(--gold-rgb), 0.45);
 
   // Oltin to'lish: rasm qancha vaqtdan keyin almashishini ko'rsatadi
   &::after {
@@ -639,7 +657,7 @@
   place-items: center;
   aspect-ratio: 16 / 10;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(201, 168, 118, 0.18), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(135deg, rgba(var(--gold-rgb), 0.18), rgba(var(--line-rgb), 0.02));
   color: var(--gold);
   font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   font-weight: 700;

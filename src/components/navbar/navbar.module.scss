@@ -33,7 +33,7 @@
   justify-content: space-between;
   gap: 24px;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1180px;
   height: 64px;
   padding: 0 10px 0 14px;
 
@@ -44,12 +44,12 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    border: 1px solid rgba(201, 168, 118, 0.18);
+    border: 1px solid rgba(var(--gold-rgb), 0.18);
     border-radius: 999px;
-    background: rgba(17, 17, 19, 0.62);
+    background: rgba(var(--glass-rgb), 0.62);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+    box-shadow: 0 1px 0 rgba(var(--line-rgb), 0.04) inset;
     transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
@@ -62,9 +62,9 @@
 
 // Sahifa aylantirilgach kapsula to'qroq va soyali bo'ladi
 .scrolled .bar::before {
-  background: rgba(17, 17, 19, 0.82);
-  border-color: rgba(201, 168, 118, 0.26);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  background: rgba(var(--glass-rgb), 0.82);
+  border-color: rgba(var(--gold-rgb), 0.26);
+  box-shadow: 0 12px 40px rgba(var(--shadow-rgb), 0.45), 0 1px 0 rgba(var(--line-rgb), 0.04) inset;
 }
 
 // ===== Logo =====
@@ -88,7 +88,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(201, 168, 118, 0.4);
+  border: 1px solid rgba(var(--gold-rgb), 0.4);
   transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
@@ -126,8 +126,8 @@
   left: 0;
   height: 100%;
   border-radius: 999px;
-  background: rgba(201, 168, 118, 0.14);
-  border: 1px solid rgba(201, 168, 118, 0.3);
+  background: rgba(var(--gold-rgb), 0.14);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
   pointer-events: none;
 }
@@ -137,7 +137,7 @@
   display: block;
   padding: 9px 16px;
   border-radius: 999px;
-  color: rgba(243, 239, 231, 0.72);
+  color: rgba(var(--text-rgb), 0.72);
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -157,7 +157,7 @@
   }
 }
 
-.menuCta {
+.menuBottom {
   display: none;
 }
 
@@ -184,13 +184,13 @@
   transition: background 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: rgba(201, 168, 118, 0.12);
+    background: rgba(var(--gold-rgb), 0.12);
     color: var(--gold);
   }
 }
 
 .cartActive {
-  background: rgba(201, 168, 118, 0.14);
+  background: rgba(var(--gold-rgb), 0.14);
   color: var(--gold);
 }
 
@@ -205,7 +205,7 @@
   padding: 0 5px;
   border-radius: 999px;
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
   font-size: 10px;
   font-weight: 800;
   line-height: 1;
@@ -219,7 +219,7 @@
   padding: 0 20px;
   border-radius: 999px;
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold);
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
@@ -228,12 +228,12 @@
 
   &:hover {
     gap: 12px;
-    box-shadow: 0 6px 24px rgba(201, 168, 118, 0.3);
+    box-shadow: 0 6px 24px rgba(var(--gold-rgb), 0.3);
   }
 }
 
 .ctaActive {
-  box-shadow: 0 0 0 3px rgba(201, 168, 118, 0.25);
+  box-shadow: 0 0 0 3px rgba(var(--gold-rgb), 0.25);
 }
 
 .ctaIcon {
@@ -245,7 +245,7 @@
 }
 
 // ===== Planshet: havolalar torroq =====
-@media (max-width: 960px) and (min-width: 769px) {
+@media (max-width: 1240px) and (min-width: 1025px) {
   .brandName {
     display: none;
   }
@@ -256,7 +256,7 @@
 }
 
 // ===== Telefon: to'liq ekranli menyu =====
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .brand {
     flex: 0 1 auto;
   }
@@ -289,7 +289,7 @@
       width: 16px;
       height: 2px;
       border-radius: 2px;
-      background: var(--bg);
+      background: var(--on-gold);
       transition: transform 0.3s ease;
     }
   }
@@ -347,7 +347,7 @@
 
   .link {
     padding: 16px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(var(--line-rgb), 0.07);
     border-radius: 0;
     color: var(--text);
     font-family: var(--font-display);
@@ -367,9 +367,176 @@
     height: 56px;
     border-radius: 999px;
     background: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
+  }
+
+  .settings {
+    display: none;
+  }
+
+  .menuBottom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .menuSettings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .menuTheme {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(var(--line-rgb), 0.12);
+    font-size: 21px;
+  }
+}
+
+// ===== Til va rejim =====
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-size: 19px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.3s ease;
+
+  &:hover {
+    background: rgba(var(--gold-rgb), 0.12);
+    color: var(--gold);
+    transform: rotate(15deg);
+  }
+}
+
+.langMenu {
+  position: relative;
+}
+
+.langBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background: rgba(var(--gold-rgb), 0.12);
+    color: var(--gold);
+  }
+
+  &[aria-expanded='true'] .langChevron {
+    transform: rotate(180deg);
+  }
+}
+
+.langChevron {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.langList {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 160px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 16px 40px rgba(var(--shadow-rgb), 0.35);
+  animation: dropIn 0.18s ease;
+}
+
+.langOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(var(--gold-rgb), 0.1);
+  }
+
+  svg {
+    color: var(--gold);
+  }
+}
+
+.langOptionActive {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+// Telefon menyusidagi UZ | RU | EN
+.langSegments {
+  display: flex;
+  flex: 1;
+  padding: 4px;
+  border: 1px solid rgba(var(--line-rgb), 0.12);
+  border-radius: 999px;
+}
+
+.segment,
+.segmentActive {
+  flex: 1;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.segmentActive {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
   }
 }

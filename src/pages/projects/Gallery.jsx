@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
+import { useLang } from '../../i18n/LanguageContext'
 import styles from './Projects.module.scss'
 
 // Bir nechta rasmni slayder ko'rinishida ko'rsatadi.
 // Strelkalar, pastdagi nuqtalar va telefonda barmoq bilan surish ishlaydi.
 // active — shu loyiha hozir ekranda; autoplay — rasmlar o'zi almashadimi; interval — har rasm necha ms.
 function Gallery({ images, title, active = true, autoplay = false, interval = 2500 }) {
+  const { t } = useLang()
   const [index, setIndex] = useState(0)
   const touchX = useRef(null)
   const count = images.length
@@ -53,14 +55,14 @@ function Gallery({ images, title, active = true, autoplay = false, interval = 25
       }}
       tabIndex={count > 1 ? 0 : undefined}
       aria-roledescription={count > 1 ? 'carousel' : undefined}
-      aria-label={count > 1 ? `${title} rasmlari` : undefined}
+      aria-label={count > 1 ? t('projects.imagesOf', { title }) : undefined}
     >
       <div className={styles.track} style={{ transform: `translateX(-${index * 100}%)` }}>
         {images.map((src, i) => (
           <img
             key={src}
             src={src}
-            alt={`${title} sayti ko'rinishi ${i + 1}`}
+            alt={t('projects.screenshot', { title, n: i + 1 })}
             loading={i === 0 ? 'eager' : 'lazy'}
             aria-hidden={i !== index}
             draggable="false"
@@ -70,10 +72,10 @@ function Gallery({ images, title, active = true, autoplay = false, interval = 25
 
       {count > 1 && (
         <>
-          <button type="button" className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => go(-1)} aria-label="Oldingi rasm">
+          <button type="button" className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => go(-1)} aria-label={t('projects.prevImage')}>
             <IoChevronBack aria-hidden="true" />
           </button>
-          <button type="button" className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => go(1)} aria-label="Keyingi rasm">
+          <button type="button" className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => go(1)} aria-label={t('projects.nextImage')}>
             <IoChevronForward aria-hidden="true" />
           </button>
 
@@ -89,7 +91,7 @@ function Gallery({ images, title, active = true, autoplay = false, interval = 25
                 className={i === index ? styles.dotActive : styles.dot}
                 style={i === index && active && autoplay ? { '--dot-ms': `${interval}ms` } : undefined}
                 onClick={() => setIndex(i)}
-                aria-label={`${i + 1}-rasm`}
+                aria-label={t('projects.image', { n: i + 1 })}
                 aria-current={i === index}
               />
             ))}

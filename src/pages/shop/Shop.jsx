@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '../../api/api'
 import ProductCard from './ProductCard/ProductCard'
 import CategoryDropdown from './CategoryDropdown/CategoryDropdown'
+import { useLang } from '../../i18n/LanguageContext'
 
 function Shop() {
+  const { t } = useLang()
   const [search, setSearch] = useState('')
   const [submittedSearch, setSubmittedSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
@@ -44,15 +46,10 @@ function Shop() {
     'oziq ovqat': 'groceries',
   }
 
-  const categories = [
-    { label: 'Barchasi', value: 'all' },
-    { label: 'Kosmetika', value: 'beauty' },
-    { label: 'Parfyum', value: 'fragrances' },
-    { label: 'Mebel', value: 'furniture' },
-    { label: 'Soatlar', value: 'watches' },
-    { label: 'Taqinchoq', value: 'jewellery' },
-    { label: 'Oyoq kiyim', value: 'shoes' },
-  ]
+  const categories = ['all', 'beauty', 'fragrances', 'furniture', 'watches', 'jewellery', 'shoes'].map((value) => ({
+    value,
+    label: t(`shop.categories.${value}`),
+  }))
 
   const filtered = products.filter(product => {
     const query = submittedSearch.toLowerCase().trim()
@@ -90,7 +87,7 @@ function Shop() {
   // Yuklanayotganda: mahsulot o'rnida bo'sh kartochkalar (skeleton)
   if (isLoading) {
     return (
-      <section className={`${styles.grid} ${styles.gridTop}`} aria-busy="true" aria-label="Mahsulotlar yuklanmoqda">
+      <section className={`${styles.grid} ${styles.gridTop}`} aria-busy="true" aria-label={t('shop.loadingLabel')}>
         {Array.from({ length: 8 }, (_, i) => (
           <div key={i} className={styles.skeleton} aria-hidden="true">
             <span className={styles.skeletonImg} />
@@ -106,13 +103,10 @@ function Shop() {
   if (isError) {
     return (
       <div className={styles.state} role="alert">
-        <h2>Mahsulotlarni yuklab bo'lmadi</h2>
-        <p>
-          Internet aloqasini tekshiring yoki birozdan keyin qayta urinib ko'ring.
-          Mahsulotlar dummyjson.com demo API'sidan olinadi.
-        </p>
+        <h2>{t('shop.errorTitle')}</h2>
+        <p>{t('shop.errorText')}</p>
         <button type="button" className={styles.searchBtn} onClick={() => refetch()} disabled={isFetching}>
-          {isFetching ? 'Yuklanmoqda...' : 'Qayta urinish'}
+          {isFetching ? t('common.loading') : t('common.retry')}
         </button>
       </div>
     )
@@ -128,17 +122,18 @@ function Shop() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Qidirish..."
-            aria-label="Mahsulot qidirish"
+            placeholder={t('shop.searchPh')}
+            aria-label={t('shop.searchLabel')}
             className={styles.searchInput}
           />
           <button onClick={handleSearch} className={styles.searchBtn}>
-            Qidirish
+            {t('shop.search')}
           </button>
         </div>
 
         <CategoryDropdown
           options={categories}
+          label={t('shop.category')}
           value={activeCategory}
           onChange={(value) => { setActiveCategory(value); setCurrentPage(1) }}
         />
@@ -146,7 +141,7 @@ function Shop() {
 
       {paginated.length === 0 && (
         <div className={styles.empty}>
-          <p>Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.</p>
+          <p>{t('shop.empty')}</p>
         </div>
       )}
 
@@ -165,11 +160,11 @@ function Shop() {
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)}>
-            Orqaga
+            {t('shop.prev')}
           </button>
           <span>{currentPage} / {totalPages}</span>
           <button disabled={currentPage >= totalPages} onClick={() => setCurrentPage(p => p + 1)}>
-            Oldinga
+            {t('shop.next')}
           </button>
         </div>
       )}

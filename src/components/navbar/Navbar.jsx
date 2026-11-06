@@ -3,16 +3,14 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { IoArrowForward, IoBagHandleOutline } from 'react-icons/io5'
 import { useCart } from '../../context/CartContext'
+import { useLang } from '../../i18n/LanguageContext'
+import { LangMenu, LangSegments, ThemeToggle } from './Settings'
+import { PAGES } from '../../data/navigation'
 
-const PAGES = [
-  { to: '/about', label: 'About' },
-  { to: '/skills', label: 'Skills' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/shop', label: 'Shop' },
-]
 
 function Navbar() {
   const { count } = useCart()
+  const { t, lang } = useLang()
   const { pathname } = useLocation()
   // Telefondagi menyu ochiqmi
   const [open, setOpen] = useState(false)
@@ -55,7 +53,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Pill'ni faol havola ostiga joylash (sahifa, oyna o'lchami yoki shrift o'zgarsa)
+  // Pill'ni faol havola ostiga joylash (sahifa, til, oyna o'lchami yoki shrift o'zgarsa)
   useLayoutEffect(() => {
     const place = () => {
       const active = listRef.current?.querySelector('[aria-current="page"]')
@@ -69,7 +67,7 @@ function Navbar() {
     window.addEventListener('resize', place)
     document.fonts?.ready.then(place)
     return () => window.removeEventListener('resize', place)
-  }, [pathname])
+  }, [pathname, lang])
 
   const linkClass = ({ isActive }) =>
     `${styles.link} ${isActive ? styles.linkActive : ''}`
@@ -85,9 +83,9 @@ function Navbar() {
 
   return (
     <header className={navClass}>
-      <nav className={styles.bar} aria-label="Asosiy menyu">
+      <nav className={styles.bar} aria-label={t('nav.mainMenu')}>
         {/* Logo bosilsa bosh sahifaga qaytadi */}
-        <Link to="/" className={styles.brand} aria-label="Asadbek Oybekov — bosh sahifa">
+        <Link to="/" className={styles.brand} aria-label={t('nav.homeLabel')}>
           <img src="/favicon.svg" alt="" className={styles.brandMark} />
           <span className={styles.brandName}>Asadbek</span>
         </Link>
@@ -107,24 +105,36 @@ function Navbar() {
             {PAGES.map((page, i) => (
               <li key={page.to} style={{ '--i': i }}>
                 <NavLink to={page.to} className={linkClass}>
-                  {page.label}
+                  {t(`nav.${page.key}`)}
                 </NavLink>
               </li>
             ))}
           </ul>
 
-          {/* Faqat telefondagi menyuda: aloqa tugmasi pastda */}
-          <Link to="/contact" className={styles.menuCta}>
-            Bog'lanish <IoArrowForward aria-hidden="true" />
-          </Link>
+          {/* Faqat telefondagi menyuda: til, rejim va aloqa tugmasi pastda */}
+          <div className={styles.menuBottom}>
+            <div className={styles.menuSettings}>
+              <LangSegments />
+              <ThemeToggle className={styles.menuTheme} />
+            </div>
+            <Link to="/contact" className={styles.menuCta}>
+              {t('nav.contact')} <IoArrowForward aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <div className={styles.extra}>
+          {/* Kompyuterda: til va rejim */}
+          <div className={styles.settings}>
+            <LangMenu />
+            <ThemeToggle />
+          </div>
+
           {/* Savat ikonkasi — ustida mahsulotlar soni */}
           <NavLink
             to="/cart"
             className={({ isActive }) => `${styles.cart} ${isActive ? styles.cartActive : ''}`}
-            aria-label={`Savat: ${count} ta mahsulot`}
+            aria-label={t('nav.cart', { count })}
           >
             <IoBagHandleOutline aria-hidden="true" />
             {count > 0 && <span className={styles.badge}>{count > 99 ? '99+' : count}</span>}
@@ -134,7 +144,7 @@ function Navbar() {
             to="/contact"
             className={({ isActive }) => `${styles.cta} ${isActive ? styles.ctaActive : ''}`}
           >
-            Contact <IoArrowForward aria-hidden="true" className={styles.ctaIcon} />
+            {t('nav.contact')} <IoArrowForward aria-hidden="true" className={styles.ctaIcon} />
           </NavLink>
 
           {/* Burger tugma — faqat telefonda ko'rinadi */}
@@ -144,7 +154,7 @@ function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-controls="nav-menu"
-            aria-label={open ? 'Menyuni yopish' : 'Menyuni ochish'}
+            aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
           >
             <span />
             <span />

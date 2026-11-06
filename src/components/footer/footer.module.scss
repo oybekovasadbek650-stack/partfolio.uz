@@ -1,7 +1,7 @@
 .footer {
   position: relative;
-  border-top: 1px solid rgba(201, 168, 118, 0.15);
-  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.15);
+  background: rgba(var(--line-rgb), 0.015);
 }
 
 .inner {
@@ -22,7 +22,7 @@
   flex-wrap: wrap;
   gap: 20px;
   padding: 56px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(var(--line-rgb), 0.06);
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -44,7 +44,7 @@
   padding: 14px 24px;
   background: var(--gold);
   border-radius: 999px;
-  color: var(--bg);
+  color: var(--on-gold);
   font-size: 15px;
   font-weight: 700;
   text-decoration: none;
@@ -97,7 +97,7 @@
 
 .role {
   margin: 2px 0 0;
-  color: rgba(243, 239, 231, 0.55);
+  color: rgba(var(--text-rgb), 0.55);
   font-size: 14px;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .link {
-  color: rgba(243, 239, 231, 0.75);
+  color: rgba(var(--text-rgb), 0.75);
   font-size: 14px;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -140,7 +140,7 @@
   place-items: center;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(201, 168, 118, 0.3);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
   border-radius: 50%;
   color: var(--gold);
   font-size: 17px;
@@ -149,7 +149,7 @@
   &:hover {
     background: var(--gold);
     border-color: var(--gold);
-    color: var(--bg);
+    color: var(--on-gold);
   }
 }
 
@@ -160,8 +160,8 @@
   flex-wrap: wrap;
   gap: 8px 20px;
   padding: 20px 0 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(243, 239, 231, 0.45);
+  border-top: 1px solid rgba(var(--line-rgb), 0.06);
+  color: rgba(var(--text-rgb), 0.45);
   font-size: 13px;
 
   // Telefonda pastki "tepaga" tugmasi matnni to'sib qo'ymasligi uchun

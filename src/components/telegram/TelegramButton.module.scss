@@ -1,0 +1,86 @@
+// Navbar menyusi (z-index: 100) ochilganda uning ostida qoladi
+.button {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0;
+  border-radius: 999px;
+  background: #229ed9;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(34, 158, 217, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  // Atrofida sekin "nafas oladigan" halqa
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid #229ed9;
+    animation: pulse 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(34, 158, 217, 0.45);
+
+    .label {
+      max-width: 220px;
+      padding-right: 22px;
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    right: 16px;
+    bottom: 20px;
+    height: 52px;
+  }
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+
+  svg {
+    margin-left: -3px; // samolyot ikonkasi ko'zga markazda ko'rinishi uchun
+  }
+
+  @media (max-width: 768px) {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+}
+
+// Kompyuterda sichqoncha olib borilganda yozuv chiqadi
+.label {
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: max-width 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
