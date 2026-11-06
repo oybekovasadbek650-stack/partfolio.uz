@@ -1,13 +1,26 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 import styles from './Projects.module.scss'
 
 // Bir nechta rasmni slayder ko'rinishida ko'rsatadi.
 // Strelkalar, pastdagi nuqtalar va telefonda barmoq bilan surish ishlaydi.
-function Gallery({ images, title }) {
+// active — shu loyiha hozir ekranda; autoplay — rasmlar o'zi almashadimi; interval — har rasm necha ms.
+function Gallery({ images, title, active = true, autoplay = false, interval = 2500 }) {
   const [index, setIndex] = useState(0)
   const touchX = useRef(null)
   const count = images.length
+
+  // Loyiha ekrandan ketganda galereya boshiga qaytadi — keyingi safar 1-rasmdan boshlanadi
+  useEffect(() => {
+    if (!active) setIndex(0)
+  }, [active])
+
+  // Rasmlar o'zi almashadi. index ham bog'liqlikda: qo'lda almashtirilsa, taymer qaytadan boshlanadi
+  useEffect(() => {
+    if (!active || !autoplay || count < 2) return
+    const t = setTimeout(() => setIndex((i) => (i + 1) % count), interval)
+    return () => clearTimeout(t)
+  }, [active, autoplay, count, interval, index])
 
   const go = (step) => setIndex((i) => (i + step + count) % count)
 
@@ -74,6 +87,7 @@ function Gallery({ images, title }) {
                 key={src}
                 type="button"
                 className={i === index ? styles.dotActive : styles.dot}
+                style={i === index && active && autoplay ? { '--dot-ms': `${interval}ms` } : undefined}
                 onClick={() => setIndex(i)}
                 aria-label={`${i + 1}-rasm`}
                 aria-current={i === index}

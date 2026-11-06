@@ -160,8 +160,16 @@ function LiveButton({ live }) {
   )
 }
 
-// Har bir loyiha necha millisekund ko'rinib turadi (7000 = 7 soniya)
+// Har bir loyiha kamida necha millisekund ko'rinib turadi (7000 = 7 soniya)
 const AUTOPLAY_MS = 7000
+// Loyiha ichidagi har bir rasm necha millisekund ko'rinadi
+const IMAGE_MS = 2500
+
+// Har bir loyihaning rasmlari (bir marta hisoblanadi)
+const PROJECT_IMAGES = PROJECTS.map((p) => imagesFor(p.folder))
+
+// Loyiha barcha rasmlari ko'rsatib bo'linguncha ekranda turadi
+const durationFor = (i) => Math.max(AUTOPLAY_MS, PROJECT_IMAGES[i].length * IMAGE_MS)
 
 const prefersReducedMotion =
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -263,7 +271,13 @@ function Projects() {
                 <span />
                 <span />
               </div>
-              <Gallery images={imagesFor(project.folder)} title={project.title} />
+              <Gallery
+                images={PROJECT_IMAGES[i]}
+                title={project.title}
+                active={i === index}
+                autoplay={autoplay && !paused}
+                interval={IMAGE_MS}
+              />
             </div>
 
             <div className={expanded === i ? `${styles.body} ${styles.bodyOpen}` : styles.body}>
@@ -328,7 +342,7 @@ function Projects() {
               key={index}
               className={styles.progressBar}
               style={{
-                animationDuration: `${AUTOPLAY_MS}ms`,
+                animationDuration: `${durationFor(index)}ms`,
                 animationPlayState: paused ? 'paused' : 'running',
               }}
               onAnimationEnd={() => go(1)}

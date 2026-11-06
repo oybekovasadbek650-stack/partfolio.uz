@@ -603,8 +603,34 @@
 }
 
 .dotActive {
+  position: relative;
+  overflow: hidden;
   width: 22px;
-  background: var(--gold);
+  background: rgba(201, 168, 118, 0.45);
+
+  // Oltin to'lish: rasm qancha vaqtdan keyin almashishini ko'rsatadi
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--gold);
+  }
+
+  // Avtomatik aylanayotganda chap tomondan asta to'ladi
+  &[style*='--dot-ms']::after {
+    transform-origin: left;
+    animation: dotFill var(--dot-ms) linear both;
+  }
+}
+
+@keyframes dotFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 // Rasm hali qo'yilmagan loyiha uchun
