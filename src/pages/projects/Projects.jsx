@@ -179,8 +179,8 @@ function Projects() {
                   {t('projects.details')}
                 </Link>
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className={`${styles.secondaryBtn} ${styles.iconBtn}`} aria-label="GitHub">
-                    <FaGithub aria-hidden="true" />
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className={`${styles.secondaryBtn} ${styles.githubBtn}`}>
+                    <FaGithub aria-hidden="true" className={styles.githubIcon} /> GitHub
                   </a>
                 )}
               </div>

@@ -428,42 +428,38 @@
   gap: 10px;
   margin-top: 8px;
 
-  // Telefonda tugmalar butun kenglikni teng bo'lib oladi
-  // Telefonda: asosiy tugma kengayadi, GitHub faqat ikonka — hammasi bitta qatorda
+  // Telefonda: asosiy tugma tepada butun kenglikda,
+  // "Loyiha sahifasi" va "GitHub" pastda teng bo'lib yonma-yon
   @media (max-width: 600px) {
-    flex-wrap: nowrap;
     gap: 8px;
     margin-top: 2px;
 
     > * {
-      height: 42px;
+      height: 44px;
       justify-content: center;
     }
 
     .primaryBtn {
-      flex: 1 1 auto;
+      flex: 1 1 100%;
       padding: 0 14px;
     }
 
-    .detailsBtn {
-      flex: 1 1 auto;
+    .detailsBtn,
+    .githubBtn {
+      flex: 1 1 0;
       padding: 0 12px;
-    }
-
-    .iconBtn {
-      flex: 0 0 42px;
-      width: 42px;
-      font-size: 18px;
     }
   }
 }
 
-// GitHub tugmasi — faqat ikonka, dumaloq
-.iconBtn {
-  justify-content: center;
-  width: 46px;
-  padding: 0;
-  font-size: 19px;
+// GitHub tugmasi: katta ikonka + "GitHub" yozuvi
+.githubBtn {
+  gap: 8px;
+}
+
+.githubIcon {
+  flex-shrink: 0;
+  font-size: 20px;
 }
 
 // Karta sarlavhasi loyiha sahifasiga olib boradi
