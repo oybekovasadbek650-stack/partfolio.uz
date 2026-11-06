@@ -310,9 +310,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: calc(var(--nav-height) + 32px) 28px 40px;
+    gap: 28px;
+    padding: calc(var(--nav-height) + 24px) 28px 32px;
     background: var(--bg);
     pointer-events: auto;
+    // Kichik yoki past ekranlarda menyuning o'zi aylantiriladi (orqadagi sahifa qulflangan)
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s;
@@ -346,13 +351,19 @@
   }
 
   .link {
-    padding: 16px 0;
+    padding: 14px 0;
     border-bottom: 1px solid rgba(var(--line-rgb), 0.07);
     border-radius: 0;
     color: var(--text);
     font-family: var(--font-display);
-    font-size: 34px;
+    font-size: clamp(26px, 8vw, 34px);
     font-weight: 600;
+
+    // Bo'yi past telefonlar (iPhone SE kabi) — hammasi bitta ekranga sig'sin
+    @media (max-height: 720px) {
+      padding: 10px 0;
+      font-size: 26px;
+    }
   }
 
   .linkActive {
@@ -373,10 +384,6 @@
     text-decoration: none;
   }
 
-  .settings {
-    display: none;
-  }
-
   .menuBottom {
     display: flex;
     flex-direction: column;
@@ -390,7 +397,7 @@
     gap: 12px;
   }
 
-  .menuTheme {
+  .menuSettings .menuTheme {
     width: 48px;
     height: 48px;
     border: 1px solid rgba(var(--line-rgb), 0.12);
@@ -538,5 +545,13 @@
   from {
     opacity: 0;
     transform: translateY(-6px);
+  }
+}
+
+// Telefonda til va rejim tepadagi panelda emas, menyu ichida turadi.
+// Bu qoida fayl oxirida — yuqoridagi .settings { display: flex } uni bekor qilmasligi uchun.
+@media (max-width: 1024px) {
+  .settings {
+    display: none;
   }
 }
