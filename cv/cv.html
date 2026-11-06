@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<title>Asadbek Oybekov — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  :root {
+    --ink: #17171a;
+    --muted: #5d574d;
+    --gold: #a8844d;
+    --gold-soft: #f4ede2;
+    --line: #e6dfd3;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 210mm; height: 297mm;
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--ink);
+    font-size: 9.1pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    display: grid;
+    grid-template-columns: 70mm 1fr;
+    overflow: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ===== Chap ustun ===== */
+  .side {
+    background: #faf7f2;
+    border-right: 1px solid var(--line);
+    padding: 15mm 7mm 12mm 9mm;
+  }
+  .side h2 {
+    margin: 0 0 3mm;
+    padding-bottom: 1.6mm;
+    border-bottom: 1px solid var(--line);
+    font-size: 8.4pt; font-weight: 800;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .side section { margin-bottom: 6mm; }
+  .status {
+    display: inline-flex; align-items: center; gap: 2mm;
+    margin-bottom: 8mm;
+    padding: 1.4mm 3.4mm;
+    border: 1px solid #9fd5b0; border-radius: 99px;
+    background: #ecf8f0; color: #1f7a3d;
+    font-size: 8.4pt; font-weight: 700;
+  }
+  .status::before { content: ''; width: 2mm; height: 2mm; border-radius: 50%; background: #2fa85a; }
+  .contacts { list-style: none; margin: 0; padding: 0; }
+  .contacts li { margin-bottom: 2.2mm; }
+  .contacts span { display: block; font-size: 7.4pt; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .contacts a, .contacts b { font-weight: 600; font-size: 8.5pt; white-space: nowrap; }
+  .skill-group { margin-bottom: 3.2mm; }
+  .skill-group h3 { margin: 0 0 1.2mm; font-size: 8.6pt; font-weight: 700; }
+  .tags { color: #33302b; font-size: 8.8pt; }
+  .tags span:not(:last-child)::after { content: ", "; }
+  .plain { margin: 0; }
+  .plain b { display: block; }
+  .plain small { color: var(--muted); font-size: 8.4pt; }
+  .lang + .lang { margin-top: 1.8mm; }
+
+  /* ===== O'ng ustun ===== */
+  .main { padding: 12mm 13mm 8mm 11mm; }
+  .name {
+    margin: 0;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 30pt; font-weight: 700; line-height: 1.05;
+    letter-spacing: -.01em;
+  }
+  .role {
+    margin: 2mm 0 0;
+    font-size: 12.5pt; font-weight: 700; color: var(--gold);
+  }
+  .role::after { content: ''; display: block; width: 16mm; height: .8mm; margin-top: 2.6mm; background: var(--gold); border-radius: 1mm; }
+  .main h2 {
+    margin: 5mm 0 2.2mm;
+    padding-bottom: 1.4mm;
+    border-bottom: 1.4px solid var(--gold);
+    font-size: 10pt; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  }
+  p { margin: 0; }
+  .about { color: #33302b; text-align: justify; }
+  .item { margin-bottom: 3mm; }
+  .left { text-align: left; }
+  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .item-head h3 { margin: 0; font-size: 10.6pt; font-weight: 800; }
+  .item-head a, .item-head small { color: var(--gold); font-size: 8.4pt; font-weight: 600; white-space: nowrap; }
+  .meta { color: var(--muted); font-size: 8.6pt; margin: .4mm 0 1.2mm; }
+  ul.points { margin: 1mm 0 0; padding-left: 4.2mm; }
+  ul.points li { margin-bottom: .3mm; color: #33302b; }
+  ul.points li::marker { color: var(--gold); }
+  .stack { margin-top: 1.2mm; font-size: 8.4pt; font-weight: 600; color: var(--gold); }
+</style>
+</head>
+<body>
+  <aside class="side">
+    <div class="status">Ishga ochiqman</div>
+
+    <section>
+      <h2>Aloqa</h2>
+      <ul class="contacts">
+        <li><span>Telefon</span><a href="tel:+998952560710">+998 95 256 07 10</a></li>
+        <li><span>Email</span><a href="mailto:oybekovasadbek650@gmail.com">oybekovasadbek650@gmail.com</a></li>
+        <li><span>Telegram</span><a href="https://t.me/oybekovasadbek">@oybekovasadbek</a></li>
+        <li><span>Portfolio</span><a href="https://partfoliouz.vercel.app">partfoliouz.vercel.app</a></li>
+        <li><span>GitHub</span><a href="https://github.com/oybekovasadbek650-stack">github.com/oybekovasadbek650-stack</a></li>
+        <li><span>Manzil</span><b>Chilonzor, Toshkent</b></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Ko'nikmalar</h2>
+      <div class="skill-group">
+        <h3>Asos</h3>
+        <div class="tags"><span>HTML5</span><span>CSS3</span><span>SCSS / Sass</span><span>JavaScript (ES6+)</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>React ekotizimi</h3>
+        <div class="tags"><span>React</span><span>React Router</span><span>TanStack Query</span><span>Framer Motion</span><span>Next.js (asoslari)</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Ishlash usullari</h3>
+        <div class="tags"><span>REST API / Axios</span><span>Responsive dizayn</span><span>CSS Modules</span><span>LocalStorage</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Asboblar</h3>
+        <div class="tags"><span>Git</span><span>GitHub</span><span>Vite</span><span>Vercel</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tillar</h2>
+      <p class="plain lang"><b>O'zbek tili</b><small>Ona tili</small></p>
+      <p class="plain lang"><b>Rus tili</b><small>Boshlang'ich — tushunaman</small></p>
+      <p class="plain lang"><b>Ingliz tili</b><small>Boshlang'ich</small></p>
+    </section>
+
+    <section>
+      <h2>Diplom</h2>
+      <p class="plain"><b>ProWeb — Frontend dasturlash</b><small>Diplom ID: 5395</small></p>
+    </section>
+  </aside>
+
+  <main class="main">
+    <h1 class="name">Asadbek Oybekov</h1>
+    <p class="role">Frontend Developer (React)</p>
+
+    <h2>Men haqimda</h2>
+    <p class="about">
+      ProWeb o'quv markazida 7 oylik "Frontend dasturlash" kursini a'lo darajada tamomlagan
+      frontend dasturchiman. React, JavaScript va SCSS yordamida bir nechta real loyihani
+      boshidan oxirigacha mustaqil yaratib, internetga chiqarganman: API bilan ishlaydigan
+      demo do'kon, Telegram botga ulangan forma, AI g'oyasi uchun interaktiv prezentatsiya va boshqalar.
+      Junior Front&#8209;end lavozimida jamoaga qo'shilib, tajribali dasturchilardan o'rganishga tayyorman.
+    </p>
+
+    <h2>Loyihalar</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>A.DEV — Shaxsiy portfolio sayt</h3>
+        <a href="https://partfoliouz.vercel.app">partfoliouz.vercel.app</a>
+      </div>
+      <ul class="points">
+        <li>DummyJSON API'ga ulangan demo do'kon: qidiruv, kategoriya filtri, sahifalash, mahsulot sahifasi va savatcha</li>
+        <li>Ma'lumotlarni TanStack Query bilan keshlash; React Router orqali ko'p sahifali navigatsiya</li>
+        <li>Aloqa formasi: validatsiya, spam-himoya va Vercel serverless funksiyasi orqali Telegram botga yuborish</li>
+        <li>To'liq responsive dizayn, accessibility (aria, klaviatura bilan boshqarish)</li>
+      </ul>
+      <div class="stack">React · Vite · SCSS Modules · React Router · TanStack Query · Axios · Vercel</div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Algora — Interaktiv prezentatsiya sayti</h3>
+        <a href="https://tajriba-six.vercel.app">tajriba-six.vercel.app</a>
+      </div>
+      <ul class="points">
+        <li>AI talaba yordamchisi g'oyasining taqdimoti: 9 ta slayd, PowerPoint o'rniga brauzerda</li>
+        <li>Scroll bilan yuradigan video fon, Canvas animatsiyalar, animatsion grafik</li>
+        <li>Klaviatura bilan boshqarish, to'liq ekran, PDF eksport va ma'ruza rejimi</li>
+      </ul>
+      <div class="stack">React · Vite · Canvas API · CSS · Vercel</div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Toychi.uz — Onlayn to'y taklifnomasi</h3>
+        <a href="https://toychi-uz.vercel.app">toychi-uz.vercel.app</a>
+      </div>
+      <ul class="points">
+        <li>Animatsion taklifnoma, to'ygacha qolgan vaqt hisoblagichi va galereya</li>
+        <li>Mehmonlar kelishini tasdiqlaydigan forma va fon musiqasi</li>
+      </ul>
+      <div class="stack">React · Vite · CSS · Vercel</div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Eslatmalar — Eslatmalar ilovasi</h3>
+        <a href="https://todolist-rouge-two.vercel.app">todolist-rouge-two.vercel.app</a>
+      </div>
+      <ul class="points">
+        <li>Qo'shish, tahrirlash, o'chirish va qidirish (CRUD); LocalStorage'da saqlash</li>
+        <li>Jadval va ro'yxat ko'rinishi, ikki til: o'zbekcha va ruscha</li>
+      </ul>
+      <div class="stack">React · Vite · LocalStorage · Vercel</div>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Boshqa loyihalar</h3>
+      </div>
+      <p class="about left">
+        <b>Cinemas</b> (film platformasi landingi), <b>Where the Sky Begins</b> (yorug'/qorong'u rejimli landing),
+        <b>dBurger</b> (savatchali buyurtma sahifasi), <b>Perfume Line</b> — HTML, CSS/SCSS va JavaScript asosida.
+      </p>
+    </div>
+
+    <h2>Ta'lim</h2>
+    <div class="item">
+      <div class="item-head">
+        <h3>ProWeb o'quv markazi — Frontend dasturlash</h3>
+        <small>2026-yil sentabr</small>
+      </div>
+      <p class="meta">56 dars · 7 oy · a'lo darajada tamomlangan</p>
+      <p class="about">
+        Diplom ishi: React + Vite asosidagi portfolio sayt va API'ga ulangan React ilova.
+      </p>
+    </div>
+  </main>
+</body>
+</html>

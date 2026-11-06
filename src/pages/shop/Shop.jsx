@@ -12,9 +12,10 @@ function Shop() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 12
 
-  const { data: products = [], isLoading, error } = useQuery({
+  const { data: products = [], isLoading, isError, refetch, isFetching } = useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
+    retry: 1,
   })
 
   const translations = {
@@ -86,8 +87,37 @@ function Shop() {
     }
   }
 
-  if (isLoading) return <p>Yuklanmoqda...</p>
-  if (error) return <p>Xatolik yuz berdi: {error.message}</p>
+  // Yuklanayotganda: mahsulot o'rnida bo'sh kartochkalar (skeleton)
+  if (isLoading) {
+    return (
+      <section className={`${styles.grid} ${styles.gridTop}`} aria-busy="true" aria-label="Mahsulotlar yuklanmoqda">
+        {Array.from({ length: 8 }, (_, i) => (
+          <div key={i} className={styles.skeleton} aria-hidden="true">
+            <span className={styles.skeletonImg} />
+            <span className={styles.skeletonLine} />
+            <span className={styles.skeletonLineShort} />
+          </div>
+        ))}
+      </section>
+    )
+  }
+
+  // Internet yoki API ishlamasa: tushunarli xabar va qayta urinish tugmasi
+  if (isError) {
+    return (
+      <div className={styles.state} role="alert">
+        <h2>Mahsulotlarni yuklab bo'lmadi</h2>
+        <p>
+          Internet aloqasini tekshiring yoki birozdan keyin qayta urinib ko'ring.
+          Mahsulotlar dummyjson.com demo API'sidan olinadi.
+        </p>
+        <button type="button" className={styles.searchBtn} onClick={() => refetch()} disabled={isFetching}>
+          {isFetching ? 'Yuklanmoqda...' : 'Qayta urinish'}
+        </button>
+      </div>
+    )
+  }
+
 
   return (
     <>
@@ -113,6 +143,12 @@ function Shop() {
           onChange={(value) => { setActiveCategory(value); setCurrentPage(1) }}
         />
       </div>
+
+      {paginated.length === 0 && (
+        <div className={styles.empty}>
+          <p>Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.</p>
+        </div>
+      )}
 
       <section className={styles.grid}>
         {paginated.map(product => (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { IoArrowForward } from 'react-icons/io5'
+import { IoArrowForward, IoDownloadOutline } from 'react-icons/io5'
 import asadImg from '../../images/asad.webp'
 import styles from './Home.module.scss'
 
@@ -15,20 +15,26 @@ function Home() {
     <main className={styles.home}>
       <section className={styles.hero}>
         <div className={styles.text}>
+          <p className={styles.status}>
+            <span className={styles.statusDot} aria-hidden="true" />
+            Ishga ochiqman
+          </p>
           <h1 className={styles.name}>Asadbek Oybekov</h1>
           <p className={styles.role}>Front-end Developer</p>
 
           <p className={styles.intro}>
-           Hozirda Toshkent shahrida yashayman! 
+            React va Next.js bilan tez ishlaydigan, har qanday ekranga moslashadigan
+            web-saytlar yarataman. Toshkentdaman, Junior Front-end lavozimida jamoaga
+            qo'shilishga tayyorman.
           </p>
 
           <div className={styles.actions}>
             <Link to="/projects" className={styles.primaryBtn}>
               Loyihalarni ko'rish <IoArrowForward aria-hidden="true" />
             </Link>
-            <Link to="/contact" className={styles.secondaryBtn}>
-              Bog'lanish
-            </Link>
+            <a href="/Asadbek_Oybekov_CV.pdf" download className={styles.secondaryBtn}>
+              <IoDownloadOutline aria-hidden="true" /> CV yuklab olish
+            </a>
           </div>
         </div>
 

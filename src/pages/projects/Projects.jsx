@@ -40,33 +40,19 @@ const PROJECTS = [
     github: 'https://github.com/oybekovasadbek650-stack/partfolio.uz',
   },
   {
-    title: 'Where the Sky Begins',
+    title: 'Algora',
     description:
-      "Tog'lar mavzusidagi landing sahifa: katta hero rasm, toza tipografiya va qulay navigatsiya.",
+      "Sun'iy intellekt asosidagi talaba yordamchisi g'oyasini taqdim etish uchun yaratilgan interaktiv prezentatsiya sayti. PowerPoint o'rniga brauzerda ochiladigan, scroll bilan boshqariladigan 9 ta slayd.",
     features: [
-      'Til tanlash (EN)',
-      "Yorug' va qorong'u rejim",
-      "About, Catalog va Contacts bo'limlari",
+      'Sahifa aylantirilganda oldinga-orqaga yuradigan video fon',
+      'Canvas bilan chizilgan jonli fon, animatsion grafik va raqamlar',
+      "Klaviatura bilan boshqarish: strelkalar, 1–9, F — to'liq ekran, P — PDF",
+      "Ma'ruza rejimi va slaydlar bo'yicha progress ko'rsatkichi",
     ],
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    folder: 'mountain',
-    live: { href: 'https://oybekovasadbek650-stack.github.io/GITHUPGA-YANGGILIK-/', label: 'Saytni ochish' },
-    github: 'https://github.com/oybekovasadbek650-stack/GITHUPGA-YANGGILIK-',
-  },
-  {
-    title: 'November',
-    description:
-      "Yaqin inson uchun maxsus tayyorlangan sovg'a-sayt. Ichkariga faqat 4 ta savolga to'g'ri javob bergan odam kira oladi, keyin uni musiqa va maxfiy xat kutib turadi.",
-    features: [
-      "4 ta savoldan iborat \"maxfiy kirish\" va progress ko'rsatkichi",
-      'Aylanadigan vinil plastinkali musiqa pleyeri',
-      'Bosganda ochiladigan animatsion xat',
-      'Uchib yuruvchi yuraklar va yulduzli fon animatsiyasi',
-    ],
-    tech: ['React', 'CSS', 'Vite', 'Vercel'],
-    folder: 'novermber',
-    live: { href: 'https://november-3.vercel.app/', label: 'Saytni ochish' },
-    github: null,
+    tech: ['React', 'Vite', 'Canvas API', 'CSS', 'Vercel'],
+    folder: 'algora',
+    live: { href: 'https://tajriba-six.vercel.app/', label: 'Saytni ochish' },
+    github: 'https://github.com/oybekovasadbek650-stack/tajriba',
   },
   {
     title: 'Eslatmalar',
@@ -84,21 +70,6 @@ const PROJECTS = [
     github: null,
   },
   {
-    title: 'Cinemas',
-    description:
-      "Film va seriallar tomosha qilish platformasi uchun landing sahifa: katta hero banner, filmlar katalogi va kolleksiyalar.",
-    features: [
-      "Filmlar, seriallar, multfilmlar va kolleksiyalar bo'limlari",
-      'Hero bannerda "Watch now" va "Download" tugmalari',
-      'Marvel, Star Wars kabi franshiza kolleksiyalari',
-      'Google Play va App Store havolalari',
-    ],
-    tech: ['HTML', 'CSS', 'Vercel'],
-    folder: 'cinemas',
-    live: { href: 'https://sinemas-lovat.vercel.app/', label: 'Saytni ochish' },
-    github: null,
-  },
-  {
     title: 'Toychi.uz',
     description:
       "Onlayn to'y taklifnomasi. Mehmon muhrni bosib taklifnomani ochadi, to'ygacha qolgan vaqtni ko'radi va kelish-kelmasligini shu yerning o'zida tasdiqlaydi.",
@@ -111,7 +82,36 @@ const PROJECTS = [
     tech: ['React', 'CSS', 'Vite', 'Vercel'],
     folder: 'toychi.uz',
     live: { href: 'https://toychi-uz.vercel.app/', label: 'Saytni ochish' },
-    github: null,
+    github: 'https://github.com/oybekovasadbek650-stack/toychi_uz',
+  },
+  {
+    title: 'Where the Sky Begins',
+    description:
+      "Tog'lar mavzusidagi landing sahifa: katta hero rasm, toza tipografiya va qulay navigatsiya.",
+    features: [
+      'Til tanlash (EN)',
+      "Yorug' va qorong'u rejim",
+      "About, Catalog va Contacts bo'limlari",
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    folder: 'mountain',
+    live: { href: 'https://oybekovasadbek650-stack.github.io/GITHUPGA-YANGGILIK-/', label: 'Saytni ochish' },
+    github: 'https://github.com/oybekovasadbek650-stack/GITHUPGA-YANGGILIK-',
+  },
+  {
+    title: 'Cinemas',
+    description:
+      "Film va seriallar tomosha qilish platformasi uchun landing sahifa: katta hero banner, filmlar katalogi va kolleksiyalar.",
+    features: [
+      "Filmlar, seriallar, multfilmlar va kolleksiyalar bo'limlari",
+      'Hero bannerda "Watch now" va "Download" tugmalari',
+      'Marvel, Star Wars kabi franshiza kolleksiyalari',
+      'Google Play va App Store havolalari',
+    ],
+    tech: ['HTML', 'CSS', 'Vercel'],
+    folder: 'cinemas',
+    live: { href: 'https://sinemas-lovat.vercel.app/', label: 'Saytni ochish' },
+    github: 'https://github.com/oybekovasadbek650-stack/uy-ishi',
   },
   {
     title: 'dBurger',
@@ -127,6 +127,21 @@ const PROJECTS = [
     folder: 'burger',
     live: { href: 'https://d-burger-kohl.vercel.app/', label: 'Saytni ochish' },
     github: null,
+  },
+  {
+    title: 'November',
+    description:
+      "Yaqin inson uchun maxsus tayyorlangan sovg'a-sayt. Ichkariga faqat 4 ta savolga to'g'ri javob bergan odam kira oladi, keyin uni musiqa va maxfiy xat kutib turadi.",
+    features: [
+      "4 ta savoldan iborat \"maxfiy kirish\" va progress ko'rsatkichi",
+      'Aylanadigan vinil plastinkali musiqa pleyeri',
+      'Bosganda ochiladigan animatsion xat',
+      'Uchib yuruvchi yuraklar va yulduzli fon animatsiyasi',
+    ],
+    tech: ['React', 'CSS', 'Vite', 'Vercel'],
+    folder: 'novermber',
+    live: { href: 'https://november-3.vercel.app/', label: 'Saytni ochish' },
+    github: 'https://github.com/oybekovasadbek650-stack/november-3',
   },
 ]
 

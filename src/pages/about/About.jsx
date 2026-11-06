@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { IoArrowForward } from 'react-icons/io5'
+import { IoArrowForward, IoDownloadOutline } from 'react-icons/io5'
+import diplomImg from '../../images/diplom.jpg'
 import styles from './About.module.scss'
 
 // Mening yo'lim — tartib bilan
@@ -14,7 +15,7 @@ const JOURNEY = [
   },
   {
     title: "ProWeb o'quv markazi",
-    text: '7 oylik frontend kursini tamomladim.',
+    text: "7 oylik frontend kursini a'lo darajada tamomlab, diplom ishini himoya qildim.",
   },
   {
     title: 'Hozir',
@@ -27,7 +28,16 @@ const FACTS = [
   { label: 'Asli', value: "Sho'rchi tumani, Surxondaryo" },
   { label: 'Hozir', value: 'Toshkent' },
   { label: "Ta'lim", value: 'ProWeb, 7 oylik frontend kursi' },
+  { label: 'Tillar', value: "O'zbek, rus va ingliz (boshlang'ich)" },
   { label: "Yo'nalish", value: 'Front-end Developer' },
+]
+
+const DIPLOMA = [
+  { label: "Yo'nalish", value: 'Frontend dasturlash' },
+  { label: 'Davomiyligi', value: '56 dars (7 oy)' },
+  { label: 'Natija', value: "A'lo" },
+  { label: 'Berilgan sana', value: '25.09.2026' },
+  { label: 'Diplom ID', value: '5395' },
 ]
 
 function About() {
@@ -70,12 +80,42 @@ function About() {
             <Link to="/skills" className={styles.primaryBtn}>
               Ko'nikmalarim <IoArrowForward aria-hidden="true" />
             </Link>
-            <Link to="/contact" className={styles.secondaryBtn}>
-              Bog'lanish
-            </Link>
+            <a href="/Asadbek_Oybekov_CV.pdf" download className={styles.secondaryBtn}>
+              <IoDownloadOutline aria-hidden="true" /> CV yuklab olish
+            </a>
           </div>
         </aside>
       </div>
+
+      <section className={styles.diploma}>
+        <h2 className={styles.sectionTitle}>Diplom</h2>
+        <div className={styles.diplomaInner}>
+          <a href={diplomImg} target="_blank" rel="noopener noreferrer" className={styles.diplomaImgLink}>
+            <img
+              src={diplomImg}
+              alt="ProWeb o'quv markazi diplomi: Oybekov Asadbek, Frontend dasturlash"
+              className={styles.diplomaImg}
+              loading="lazy"
+            />
+          </a>
+          <div>
+            <h3 className={styles.diplomaTitle}>ProWeb o'quv markazi</h3>
+            <p className={styles.diplomaText}>
+              7 oylik <strong>"Frontend dasturlash"</strong> kursini a'lo darajada tamomlab,
+              diplom ishini muvaffaqiyatli himoya qildim. Diplom ishi sifatida shu portfolio
+              sayt va API bilan ishlaydigan React ilova yaratdim.
+            </p>
+            <dl className={styles.facts}>
+              {DIPLOMA.map((f) => (
+                <div key={f.label} className={styles.fact}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

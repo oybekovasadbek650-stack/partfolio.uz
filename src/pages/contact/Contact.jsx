@@ -6,7 +6,7 @@ import styles from './Contact.module.scss'
 // ⬇️ O'zingizning ma'lumotlaringizni shu yerga yozing
 const CONTACTS = [
   { icon: FaTelegramPlane, label: 'Telegram', value: '@oybekovasadbek', href: 'https://t.me/oybekovasadbek' },
-  { icon: IoMail, label: 'Email', value: 'oybekovasadbek650@gmail.com', href: 'mailto:email@example.com' },
+  { icon: IoMail, label: 'Email', value: 'oybekovasadbek650@gmail.com', href: 'mailto:oybekovasadbek650@gmail.com' },
   { icon: FaGithub, label: 'GitHub', value: 'oybekovasadbek650-stack', href: 'https://github.com/oybekovasadbek650-stack' },
   { icon: IoLocationSharp, label: 'Manzil', value: "Toshkent, O'zbekiston" },
 ]

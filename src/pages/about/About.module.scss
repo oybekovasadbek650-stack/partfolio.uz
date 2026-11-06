@@ -186,3 +186,74 @@
     color: var(--bg);
   }
 }
+
+// ===== Diplom =====
+.diploma {
+  margin-top: 80px;
+
+  @media (max-width: 900px) {
+    margin-top: 56px;
+  }
+}
+
+.diplomaInner {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 168, 118, 0.25);
+  border-radius: 16px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 22px;
+  }
+}
+
+.diplomaImgLink {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 168, 118, 0.35);
+
+  @media (max-width: 900px) {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+.diplomaImg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+
+  .diplomaImgLink:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.diplomaTitle {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.diplomaText {
+  max-width: 55ch;
+  margin: 0 0 24px;
+  color: rgba(243, 239, 231, 0.7);
+  line-height: 1.75;
+
+  strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+}

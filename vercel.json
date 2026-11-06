@@ -1,3 +1,7 @@
 {
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/dummy/:path*", "destination": "https://dummyjson.com/:path*" },
+    { "source": "/dummy-cdn/:path*", "destination": "https://cdn.dummyjson.com/:path*" },
+    { "source": "/((?!api/|dummy/|dummy-cdn/).*)", "destination": "/index.html" }
+  ]
 }
