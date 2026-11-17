@@ -6,6 +6,7 @@ import { projects } from '../../data/projects'
 import { TESTIMONIALS } from '../../data/testimonials'
 import { SKILL_COUNT } from '../../data/skills'
 import { useLang } from '../../i18n/LanguageContext'
+import BuildIntro from '../../components/BuildIntro'
 import styles from './Home.module.scss'
 
 // Saytning asosiy bo'limlariga tez o'tish
@@ -31,16 +32,16 @@ function Home() {
     <main className={styles.home}>
       <section className={styles.hero}>
         <div className={styles.text}>
-          <p className={styles.status}>
+          <p className={styles.status} data-build="html">
             <span className={styles.statusDot} aria-hidden="true" />
             {t('home.status')}
           </p>
-          <h1 className={styles.name}>Asadbek Oybekov</h1>
-          <p className={styles.role}>{t('home.role')}</p>
+          <h1 className={styles.name} data-build="html">Asadbek Oybekov</h1>
+          <p className={styles.role} data-build="scss">{t('home.role')}</p>
 
-          <p className={styles.intro}>{t('home.intro')}</p>
+          <p className={styles.intro} data-build="js">{t('home.intro')}</p>
 
-          <div className={styles.actions}>
+          <div className={styles.actions} data-build="react">
             <Link to="/projects" className={styles.primaryBtn}>
               {t('common.viewProjects')} <IoArrowForward aria-hidden="true" />
             </Link>
@@ -52,10 +53,11 @@ function Home() {
 
         <div className={styles.photoWrap}>
           <div className={styles.frame}>
-            <img src={asadImg} alt="Asadbek Oybekov" className={styles.photo} />
+            <img src={asadImg} alt="Asadbek Oybekov" className={styles.photo} data-build="image" />
           </div>
         </div>
       </section>
+      <BuildIntro />
 
       <section className={styles.stats} aria-labelledby="stats-title">
         <h2 id="stats-title" className={styles.visuallyHidden}>{t('home.stats.title')}</h2>
