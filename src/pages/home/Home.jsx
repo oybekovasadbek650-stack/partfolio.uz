@@ -32,20 +32,20 @@ function Home() {
     <main className={styles.home}>
       <section className={styles.hero}>
         <div className={styles.text}>
-          <p className={styles.status} data-build="html">
+          <p className={styles.status} data-build="status">
             <span className={styles.statusDot} aria-hidden="true" />
             {t('home.status')}
           </p>
-          <h1 className={styles.name} data-build="html">Asadbek Oybekov</h1>
-          <p className={styles.role} data-build="scss">{t('home.role')}</p>
+          <h1 className={styles.name} data-build="title">Asadbek Oybekov</h1>
+          <p className={styles.role} data-build="role">{t('home.role')}</p>
 
-          <p className={styles.intro} data-build="js">{t('home.intro')}</p>
+          <p className={styles.intro} data-build="intro">{t('home.intro')}</p>
 
-          <div className={styles.actions} data-build="react">
-            <Link to="/projects" className={styles.primaryBtn}>
+          <div className={styles.actions}>
+            <Link to="/projects" className={styles.primaryBtn} data-build="button">
               {t('common.viewProjects')} <IoArrowForward aria-hidden="true" />
             </Link>
-            <a href="/Asadbek_Oybekov_CV.pdf" download className={styles.secondaryBtn}>
+            <a href="/Asadbek_Oybekov_CV.pdf" download className={styles.secondaryBtn} data-build="button">
               <IoDownloadOutline aria-hidden="true" /> {t('common.downloadCv')}
             </a>
           </div>

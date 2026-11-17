@@ -83,9 +83,9 @@ function Navbar() {
 
   return (
     <header className={navClass}>
-      <nav className={styles.bar} aria-label={t('nav.mainMenu')}>
+      <nav className={styles.bar} data-build="shell" aria-label={t('nav.mainMenu')}>
         {/* Logo bosilsa bosh sahifaga qaytadi */}
-        <Link to="/" className={styles.brand} aria-label={t('nav.homeLabel')}>
+        <Link to="/" className={styles.brand} data-build="logo" aria-label={t('nav.homeLabel')}>
           <img src="/favicon.svg" alt="" className={styles.brandMark} />
           <span className={styles.brandName}>Asadbek</span>
         </Link>
@@ -104,7 +104,7 @@ function Navbar() {
             />
             {PAGES.map((page, i) => (
               <li key={page.to} style={{ '--i': i }}>
-                <NavLink to={page.to} className={linkClass}>
+                <NavLink to={page.to} className={linkClass} data-build="link">
                   {t(`nav.${page.key}`)}
                 </NavLink>
               </li>
@@ -125,7 +125,7 @@ function Navbar() {
 
         <div className={styles.extra}>
           {/* Kompyuterda: til va rejim */}
-          <div className={styles.settings}>
+          <div className={styles.settings} data-build="settings">
             <LangMenu />
             <ThemeToggle />
           </div>
@@ -133,6 +133,7 @@ function Navbar() {
           {/* Savat ikonkasi — ustida mahsulotlar soni */}
           <NavLink
             to="/cart"
+            data-build="cart"
             className={({ isActive }) => `${styles.cart} ${isActive ? styles.cartActive : ''}`}
             aria-label={t('nav.cart', { count })}
           >
@@ -142,6 +143,7 @@ function Navbar() {
 
           <NavLink
             to="/contact"
+            data-build="cta"
             className={({ isActive }) => `${styles.cta} ${isActive ? styles.ctaActive : ''}`}
           >
             {t('nav.contact')} <IoArrowForward aria-hidden="true" className={styles.ctaIcon} />
@@ -151,6 +153,7 @@ function Navbar() {
           <button
             type="button"
             className={styles.burger}
+            data-build="burger"
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-controls="nav-menu"

@@ -13,6 +13,7 @@ function TelegramButton() {
       target="_blank"
       rel="noopener noreferrer"
       className={styles.button}
+      data-build="telegram"
       aria-label={t('float.telegram')}
     >
       <span className={styles.icon}>
